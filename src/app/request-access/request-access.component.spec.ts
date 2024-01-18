@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RaftNavbarComponent } from './raft-navbar.component';
+import { RequestAccessComponent } from './request-access.component';
 
-describe('RaftNavbarComponent', () => {
-  let component: RaftNavbarComponent;
-  let fixture: ComponentFixture<RaftNavbarComponent>;
+describe('RequestAccessComponent', () => {
+  let component: RequestAccessComponent;
+  let fixture: ComponentFixture<RequestAccessComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RaftNavbarComponent]
+      declarations: [RequestAccessComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(RaftNavbarComponent);
+    fixture = TestBed.createComponent(RequestAccessComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

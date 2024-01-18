@@ -19,4 +19,8 @@ export class AppComponent {
     this.screenWidth = data.screenWidth;
     this.isSideNavCollapsed = data.collapsed
   }
+
+  isAuthenticated():boolean{
+    return localStorage.getItem("auth_token") !==null;
+  }
 }

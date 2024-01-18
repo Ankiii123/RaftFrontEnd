@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, platformBrowser } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,9 +11,11 @@ import { RequirementsComponent } from './requirements/requirements.component';
 import { SubmissionsComponent } from './submissions/submissions.component';
 import { FulfillmentsComponent } from './fulfillments/fulfillments.component';
 import { BenchComponent } from './bench/bench.component';
-import { RaftNavbarComponent } from './raft-navbar/raft-navbar.component';
-import { animation } from '@angular/animations';
 import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RequestAccessComponent } from './request-access/request-access.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,16 @@ import { HeaderComponent } from './header/header.component';
     SubmissionsComponent,
     FulfillmentsComponent,
     BenchComponent,
-    RaftNavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent,
+    LogoutComponent,
+    RequestAccessComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
