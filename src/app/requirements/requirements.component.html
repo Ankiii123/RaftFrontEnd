@@ -1,1 +1,31 @@
-<p>requirements works!</p>
+<!-- requirement.component.html -->
+
+<h2>Requirements</h2>
+<dx-data-grid
+    [dataSource]="requirements"
+    [remoteOperations]="true"
+    [width]="'100%'"
+    [height]="600"
+    [showBorders]="true"
+    (onRowUpdating)="onRowUpdating($event)"
+    (onRowInserting)="onRowInserting($event)"
+    (onRowRemoving)="onRowRemoving($event)"
+>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"></dxo-editing>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+
+    <dxi-column dataField="requirementId" caption="Requirement ID"></dxi-column>
+    <dxi-column dataField="startDate" caption="Start Date"></dxi-column>
+    <dxi-column dataField="endDate" caption="End Date"></dxi-column>
+    <dxi-column dataField="requiredNo" caption="Required Number"></dxi-column>
+    <dxi-column dataField="job_description" caption="Job Description"></dxi-column>
+    <dxi-column dataField="hiring_manager" caption="Hiring Manager"></dxi-column>
+    <dxi-column dataField="account.id" caption="Account ID"></dxi-column>
+    
+    <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+</dx-data-grid>
+

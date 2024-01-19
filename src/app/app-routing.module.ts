@@ -4,10 +4,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RequirementsComponent } from './requirements/requirements.component';
 import { SubmissionsComponent } from './submissions/submissions.component';
 import { FulfillmentsComponent } from './fulfillments/fulfillments.component';
-import { BenchComponent } from './bench/bench.component';
+import { BenchCandidatesComponent } from './bench/bench.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   
@@ -24,7 +25,7 @@ const routes: Routes = [
     path: 'fulfillments', component: FulfillmentsComponent
   },
   {
-    path: 'bench', component: BenchComponent
+    path: 'bench', component: BenchCandidatesComponent
   },
   {
     path: '',
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 
