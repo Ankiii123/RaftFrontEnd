@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit{
             this.router.navigate(["/userdetailsform"])
           }
            else {
-            this.router.navigate(["/dashboard"]);
+            this.router.navigate(["/requestAccess"]);
           }
         }
       )

@@ -8,6 +8,7 @@ import { BenchComponent } from './bench/bench.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
+import { RequestAccessComponent } from './request-access/request-access.component';
 
 const routes: Routes = [
   
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent
+  },
+  {
+    path: 'requestAccess',
+    component: RequestAccessComponent
   }
 ];
 

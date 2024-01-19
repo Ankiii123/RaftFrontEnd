@@ -16,6 +16,14 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RequestAccessComponent } from './request-access/request-access.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -36,7 +44,15 @@ import { RequestAccessComponent } from './request-access/request-access.componen
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

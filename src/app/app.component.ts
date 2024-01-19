@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { RequestAccessComponent } from './request-access/request-access.component';
+import { DataService } from './services/data.service';
 
 interface SideNavToggle{
   screenWidth: number;
@@ -11,9 +13,15 @@ interface SideNavToggle{
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+
   title = 'RaftFrontEndAngular';
   isSideNavCollapsed = false;
   screenWidth = 0;
+
+  constructor(public _dataService: DataService){
+  }
+
+  
 
   onToggleSideNav(data: SideNavToggle): void{
     this.screenWidth = data.screenWidth;
