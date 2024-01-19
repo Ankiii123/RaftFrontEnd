@@ -10,6 +10,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 
+import { RequestAccessComponent } from './request-access/request-access.component';
+
 const routes: Routes = [
   
   {
@@ -39,6 +41,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'requestAccess',
+    component: RequestAccessComponent
   }
 ];
 
