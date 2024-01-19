@@ -10,20 +10,21 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RequirementsComponent } from './requirements/requirements.component';
 import { SubmissionsComponent } from './submissions/submissions.component';
 import { FulfillmentsComponent } from './fulfillments/fulfillments.component';
-import { BenchComponent } from './bench/bench.component';
+import { BenchCandidatesComponent } from './bench/bench.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RequestAccessComponent } from './request-access/request-access.component';
+import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
+import { DxButtonModule, DxDataGridModule, DxLookupModule, DxTemplateModule } from 'devextreme-angular';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -34,11 +35,12 @@ import {MatSelectModule} from '@angular/material/select';
     RequirementsComponent,
     SubmissionsComponent,
     FulfillmentsComponent,
-    BenchComponent,
+    BenchCandidatesComponent,
     HeaderComponent,
     LoginComponent,
     LogoutComponent,
-    RequestAccessComponent
+    RequestAccessComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -51,8 +53,14 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    DxDataGridModule,
+    DxLookupModule,
+    DxTemplateModule,
+    DxButtonModule,
+    MatInputModule,
+    MatButtonModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
