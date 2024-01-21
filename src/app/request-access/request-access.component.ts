@@ -76,7 +76,7 @@ export class RequestAccessComponent {
     this.businessUnits.forEach(bu => (bu.selected = false));
     this.selectedClients = [];
     this.selectedDepartments = [];
-    this._dataService.canAccessMainComponents = true;
+    // this._dataService.canAccessMainComponents = true;
     this.router.navigate(["/dashboard"]);
   }
 
