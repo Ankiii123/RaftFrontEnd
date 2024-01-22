@@ -3,12 +3,13 @@
     <div class="head-content-left">
         <div class="search-container">
             <div class="normal-search">
-                <i class="far fa-search search-icon"></i>
+                <i class="fa fa-search search-icon"></i>
                 <input type="search" class="search" name="" id="" placeholder="Search...">
             </div>
         </div>
     </div>
         <div class="head-content-right">
+            <mat-slide-toggle [formControl]="switchTheme">Theme</mat-slide-toggle>
             <!-- <div class="head-menu">
                 <div class="head-menu-item">
                     <button class="head-menu-item-btn ripple">

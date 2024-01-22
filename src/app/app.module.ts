@@ -25,6 +25,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import { DxButtonModule, DxDataGridModule, DxLookupModule, DxTemplateModule } from 'devextreme-angular';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MatButtonModule } from '@angular/material/button';
     DxButtonModule,
     MatInputModule,
     MatButtonModule,
+    MatSlideToggleModule,
     
   ],
   providers: [],
