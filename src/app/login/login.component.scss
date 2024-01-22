@@ -1,5 +1,44 @@
-.buttonDiv{
-    height: 50px;
-    width: 50px;
-    background-color: black;
+.login_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .login_box {
+        max-width: 500px;
+        padding: 30px;
+        margin-top: 50px;
+        border-radius: 8px;
+        background-color: aliceblue;
+        border: 1px solid #09164930;
+        box-shadow: 0 0 30px -10px #33333360;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        transition: 0.5s;
+
+        .login_logo {
+            text-align: middle;
+            margin: auto;
+            transition: 1s;
+        }
+
+        p {
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+            color: #0a0097;
+        }
+
+        &:hover {
+            transform: scale(1.3);
+            box-shadow: 0 0 10px -5px #33333340;
+
+            .login_logo {
+                transform: scale(1.2);
+            }
+        }
+    }
 }

@@ -1,20 +1,31 @@
 import { Component } from '@angular/core';
 import { Requirement } from '../interfaces/Requirement';
 import { RequirementService } from '../services/requirement.service';
+import { Account } from '../interfaces/Account';
+import { AccountService } from '../services/account.service';
+
 
 @Component({
   selector: 'app-requirements',
   templateUrl: './requirements.component.html',
-  styleUrl: './requirements.component.scss'
+  styleUrl: './requirements.component.scss',
+  
 })
 export class RequirementsComponent {
   requirements: Requirement[] = [];
+  accounts : Account[] = [];
+  
 
-  constructor(private requirementService : RequirementService){}
+  constructor(private requirementService : RequirementService, private accountService : AccountService){}
+
+
 
   ngOnInit(): void {
     this.fetchRequirements();
+    this.fetchAccounts();
+    
   }
+
   private fetchRequirements(): void {
     this.requirementService.getAllRequirements().subscribe((data) => {
     
@@ -24,22 +35,30 @@ export class RequirementsComponent {
     
   }
 
+  private fetchAccounts(): void {
+    this.accountService.getAllAccounts().subscribe((data) => {
+      this.accounts = data;
+      console.log(this.accounts);
+    });
+  }
+
   onRowUpdating(event: any) {
     const updatedRequirement: Requirement = event.data;
     const rowIndex: number = event.index;
 
-   
-    this.requirementService.updateRequirement(updatedRequirement.account.id, updatedRequirement).subscribe(
-      (response) => {
-        console.log('Requirement updated successfully', response);
-        
-        this.requirements[rowIndex] = response;
-      },
-      (error) => {
-        console.error('Error updating requirement:', error);
-       
-      }
+    const matchingAccount = this.accounts.find(
+      (account) => account.name === updatedRequirement.account.name
     );
+
+    if (!matchingAccount) {
+      // Display a pop-up or notification that no account of that name was found
+      alert('No account with the specified name found.');
+      console.log("nothing matching");
+    } else {
+      console.log(this.accounts)
+      updatedRequirement.account.id = matchingAccount.id;
+      this.requirementService.updateRequirement(event.data.id, updatedRequirement);
+    }
   }
 
 
@@ -60,7 +79,7 @@ export class RequirementsComponent {
   }
 
   onRowRemoving(event: any) {
-    const requirementId = event.data.requirementId; // Adjust this based on your actual property name
+    const requirementId = event.data.requirementId; 
    
       this.requirementService.deleteRequirement(requirementId).subscribe(
         () => {
@@ -76,3 +95,7 @@ export class RequirementsComponent {
   }
 
 }
+
+  
+
+

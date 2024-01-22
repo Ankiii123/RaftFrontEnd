@@ -1,5 +1,6 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,10 +11,10 @@ export class HeaderComponent implements OnInit {
   @Input() screenWidth = 0;
 
   canShowSearchAsOverlay = false;
+  constructor() {}
 
-  constructor(){
 
-  }
+  
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any){

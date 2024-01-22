@@ -1,13 +1,14 @@
 // src/app/models/bench-candidate.model.ts
+import { User } from "./User";
 
-import { Skill } from "./Skill";
+
 
 export interface BenchCandidate {
-  name : string;
+  candidateName : string;
   id: number;
-  status: string; // Change to CandidateStatus enum if using it on the frontend
-  skill: Set<Skill>; // Array of skills
+  status: string;
+  skill: string; 
   benchPeriod: number;
-  benchManagerID: number;
-  skillAsString : string;
+  user: User;
+ 
 }

@@ -8,7 +8,7 @@ import { BenchCandidate } from '../interfaces/Bench';
   providedIn: 'root'
 })
 export class BenchService {
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }
 

@@ -16,13 +16,15 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RequestAccessComponent } from './request-access/request-access.component';
-import { DxDataGridModule, DxButtonModule, DxTemplateModule, DxLookupModule } from 'devextreme-angular';
 import { ProfileComponent } from './profile/profile.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
+import { DxButtonModule, DxDataGridModule, DxLookupModule, DxSelectBoxModule, DxTemplateModule } from 'devextreme-angular';
 import { MatButtonModule } from '@angular/material/button';
-
-
 
 @NgModule({
   declarations: [
@@ -44,14 +46,22 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
+    MatCardModule,
     DxDataGridModule,
     DxLookupModule,
-    DxTemplateModule,
+    
     DxButtonModule,
-    MatCardModule,
-    MatIconModule,
+    MatInputModule,
     MatButtonModule,
+    DxSelectBoxModule,
+    DxTemplateModule
     
   ],
   providers: [],
