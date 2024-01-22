@@ -43,23 +43,7 @@ export class BenchCandidatesComponent implements OnInit {
 
   }
   
-  private convertSkillStringToSet(skillAsString: string): Set<Skill> {
-    const skillSet: Set<Skill> = new Set();
   
-    skillAsString.split(',').forEach(skill => {
-      const [experience, technology] = skill.trim().split(' - ');
-  
-      // Assuming you have a default value for skillId or you need to fetch it from somewhere
-      const skillId = 0; // Replace 0 with the actual skillId
-  
-      const skillObject: Skill = { skillId, experience, technology };
-      skillSet.add(skillObject);
-    });
-  
-    return skillSet;
-  }
-  
-  // ...
   
   onRowUpdating(event: any): void {
     console.log('Updating Data:', event.newData);
@@ -67,12 +51,9 @@ export class BenchCandidatesComponent implements OnInit {
   
     // Check if event.key is defined and is a number
     if (event.key.id !== undefined && typeof event.key.id === 'number') {
-      const updatedCandidate = event.newData as BenchCandidate; // Assuming newData is of type BenchCandidate
-  
-      // Convert the skill set string to a Set<Skill>
-      updatedCandidate.skill = this.convertSkillStringToSet(updatedCandidate.skillAsString);
-  
-      // Use event.key as the ID
+      const updatedCandidate = event.newData as BenchCandidate; 
+    
+       // Use event.key as the ID
       this.benchService.updateCandidate(event.key.id, updatedCandidate).subscribe(
         (response) => {
           console.log('Row updated successfully:', response);
@@ -102,23 +83,13 @@ export class BenchCandidatesComponent implements OnInit {
   }
   private fetchCandidates(): void {
     this.benchService.getAllBenchCandidates().subscribe((data) => {
-     // this.benchCandidates = data;
-      this.benchCandidates = data.map(candidate => ({
-        ...candidate,
-        skillAsString: this.formatSkills(candidate.skill),
-      }));
+      
+      this.benchCandidates = data;
       console.log(this.benchCandidates);
     });
     
   }
 
-  formatSkills(skills: Set<Skill>): string {
-    const skillArray: Skill[] = Array.from(skills);
-    console.log(skillArray.map(skill => `${skill.experience} - ${skill.technology}`).join(', '));
-    return skillArray.map(skill => `${skill.experience} - ${skill.technology}`).join(', ');
-  }
 
-
-  
 }
 

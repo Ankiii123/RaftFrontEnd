@@ -23,7 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
-import { DxButtonModule, DxDataGridModule, DxLookupModule, DxTemplateModule } from 'devextreme-angular';
+import { DxButtonModule, DxDataGridModule, DxLookupModule, DxSelectBoxModule, DxTemplateModule } from 'devextreme-angular';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
@@ -57,11 +57,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatCardModule,
     DxDataGridModule,
     DxLookupModule,
-    DxTemplateModule,
     DxButtonModule,
     MatInputModule,
     MatButtonModule,
     MatSlideToggleModule,
+    DxSelectBoxModule,
+    DxTemplateModule
     
   ],
   providers: [],

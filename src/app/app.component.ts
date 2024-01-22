@@ -3,6 +3,7 @@ import { RequestAccessComponent } from './request-access/request-access.componen
 import { DataService } from './services/data.service';
 import { NavigationEnd, Router } from '@angular/router';
 
+
 interface SideNavToggle{
   screenWidth: number;
   collapsed: boolean;
@@ -31,7 +32,6 @@ export class AppComponent {
     })
   }
 
-  
 
   onToggleSideNav(data: SideNavToggle): void{
     this.screenWidth = data.screenWidth;

@@ -21,12 +21,12 @@
         <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
         
 
-        <dxi-column dataField="name" caption="Name"></dxi-column>
+        <dxi-column dataField="candidateName" caption="Name"></dxi-column>
         <dxi-column dataField="id" caption="ID"></dxi-column>
         <dxi-column dataField="status" caption="Status"></dxi-column>
-        <dxi-column dataField="skillAsString" caption="Skill Set" ></dxi-column>
+        <dxi-column dataField="skill" caption="Skill Set" ></dxi-column>
         <dxi-column dataField="benchPeriod" caption="Bench Period"></dxi-column>
-        <dxi-column dataField="benchManagerID" caption="Bench Manager ID"></dxi-column>
+        <dxi-column dataField="benchManager.employeeId" caption="Bench Manager employeeId"></dxi-column>
         
         <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
     </dx-data-grid>
