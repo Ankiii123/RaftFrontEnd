@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Requirement } from '../interfaces/Requirement';
 import { RequirementService } from '../services/requirement.service';
 import { Account } from '../interfaces/Account';
-import { AccountService } from '../services/account.service';
 
 
 @Component({
@@ -16,14 +15,12 @@ export class RequirementsComponent {
   accounts : Account[] = [];
   
 
-  constructor(private requirementService : RequirementService, private accountService : AccountService){}
+  constructor(private requirementService : RequirementService){}
 
 
 
   ngOnInit(): void {
     this.fetchRequirements();
-    this.fetchAccounts();
-    
   }
 
   private fetchRequirements(): void {
@@ -35,32 +32,40 @@ export class RequirementsComponent {
     
   }
 
-  private fetchAccounts(): void {
-    this.accountService.getAllAccounts().subscribe((data) => {
-      this.accounts = data;
-      console.log(this.accounts);
-    });
-  }
-
   onRowUpdating(event: any) {
     const updatedRequirement: Requirement = event.data;
     const rowIndex: number = event.index;
-
-    const matchingAccount = this.accounts.find(
-      (account) => account.name === updatedRequirement.account.name
-    );
-
-    if (!matchingAccount) {
-      // Display a pop-up or notification that no account of that name was found
-      alert('No account with the specified name found.');
-      console.log("nothing matching");
+  
+    // Check if 'account' property is defined
+    if (updatedRequirement.account && updatedRequirement.account.name) {
+      const matchingAccount = this.accounts.find(
+        (account) => account.name === updatedRequirement.account.name
+      );
+  
+      if (!matchingAccount) {
+        // Display a pop-up or notification that no account of that name was found
+        alert('No account with the specified name found.');
+      } else {
+        // Update the requirement with the account ID
+        updatedRequirement.account.id = matchingAccount.id;
+  
+        // Use the service to update the requirement in the backend
+        this.requirementService.updateRequirement(matchingAccount.id, updatedRequirement).subscribe(
+          (response) => {
+            console.log('Requirement updated successfully', response);
+            this.requirements[rowIndex] = response;
+          },
+          (error) => {
+            console.error('Error updating requirement:', error);
+          }
+        );
+      }
     } else {
-      console.log(this.accounts)
-      updatedRequirement.account.id = matchingAccount.id;
-      this.requirementService.updateRequirement(event.data.id, updatedRequirement);
+      // Handle the case when 'account' property is undefined or has missing properties
+      console.error('Invalid account data:', updatedRequirement.account);
     }
   }
-
+  
 
   onRowInserting(event: any) {
     const newData = event.data; 
