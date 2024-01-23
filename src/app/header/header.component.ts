@@ -1,4 +1,6 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -11,10 +13,14 @@ export class HeaderComponent implements OnInit {
   @Input() screenWidth = 0;
 
   canShowSearchAsOverlay = false;
-  constructor() {}
 
+  switchTheme = new FormControl(false)
+  @HostBinding('class') className='';
+  darkClass ='theme-dark';
+  lightClass='theme-light';
 
-  
+  constructor(public overlay:OverlayContainer){
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any){
@@ -23,6 +29,17 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void{
     this.checkCanShowSearchAsOverlay(window.innerWidth);
+    this.switchTheme.valueChanges.subscribe((currentMode)=>{
+    this.className=currentMode?this.lightClass:this.darkClass;
+
+    if(currentMode){
+      this.overlay.getContainerElement().classList.add(this.darkClass)
+    }
+    else{
+      this.overlay.getContainerElement().classList.remove(this.darkClass)
+    }
+    }
+    )
   }
 
   getHeadClass(): string{

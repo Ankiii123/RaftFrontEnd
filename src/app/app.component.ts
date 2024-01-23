@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RequestAccessComponent } from './request-access/request-access.component';
 import { DataService } from './services/data.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 interface SideNavToggle{
@@ -19,9 +20,17 @@ export class AppComponent {
   isSideNavCollapsed = false;
   screenWidth = 0;
 
-  constructor(public _dataService: DataService ){
+  constructor(public _dataService: DataService, private router: Router){
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd){
+        if (event.url === '/' || event.url === '/requestAccess') {
+          _dataService.canAccessMainComponents = false
+        } else {
+          _dataService.canAccessMainComponents = true;
+        }
+      }
+    })
   }
-  
 
 
   onToggleSideNav(data: SideNavToggle): void{

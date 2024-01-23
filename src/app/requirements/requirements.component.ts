@@ -3,6 +3,11 @@ import { Requirement } from '../interfaces/Requirement';
 import { RequirementService } from '../services/requirement.service';
 import { Account } from '../interfaces/Account';
 
+import { AddRequirementDialogComponent } from '../add-requirement-dialog-component/add-requirement-dialog-component.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { AccountService } from '../services/account.service';
+
 
 @Component({
   selector: 'app-requirements',
@@ -15,7 +20,7 @@ export class RequirementsComponent {
   accounts : Account[] = [];
   
 
-  constructor(private requirementService : RequirementService){}
+  constructor(private requirementService : RequirementService ,public dialog: MatDialog,private accountService: AccountService,){}
 
 
 
@@ -28,22 +33,76 @@ export class RequirementsComponent {
     
       this.requirements = data;
       console.log(this.requirements);
+      this.accountService.getAllAccounts().subscribe((accountsData) => {
+        this.accounts = accountsData;
+      console.log(this.accounts);
     });
-    
+  });
+  }
+   
+
+  openAddRequirementDialog(): void {
+    const dialogRef = this.dialog.open(AddRequirementDialogComponent, {
+      width: '400px',
+      data: {
+        accountNames: this.accounts.map((account) => account.name),
+        initialValues: {
+          requirementId: null,
+          startDate: '',
+          endDate: '',
+          requiredNo: null,
+          job_description: '',
+          hiring_manager: '',
+          accountName: null,
+        },
+      },
+    });
+
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        
+        const selectedAccount = this.accounts.find((account) => account.name === result.accountName);
+
+        if (selectedAccount) {
+          
+          result.account = {
+            id: selectedAccount.id,
+           
+            
+          };
+
+          
+          delete result.accountName;
+          console.log(result);
+          this.requirementService.createRequirement(result).subscribe(
+            (createdRequirement) => {
+              console.log('Requirement inserted successfully:', createdRequirement);
+              
+            },
+            (error) => {
+              console.error('Error inserting requirement:', error);
+            }
+          );
+        } else {
+          console.error('Selected account not found');
+        }
+      }
+    });
   }
 
   onRowUpdating(event: any) {
     const updatedRequirement: Requirement = event.data;
     const rowIndex: number = event.index;
   
-    // Check if 'account' property is defined
+    
     if (updatedRequirement.account && updatedRequirement.account.name) {
       const matchingAccount = this.accounts.find(
         (account) => account.name === updatedRequirement.account.name
       );
   
       if (!matchingAccount) {
-        // Display a pop-up or notification that no account of that name was found
+        
         alert('No account with the specified name found.');
       } else {
         // Update the requirement with the account ID

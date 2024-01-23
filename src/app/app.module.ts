@@ -25,6 +25,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import { DxButtonModule, DxDataGridModule, DxLookupModule, DxSelectBoxModule, DxTemplateModule } from 'devextreme-angular';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { AddRequirementDialogComponent } from './add-requirement-dialog-component/add-requirement-dialog-component.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,8 @@ import { MatButtonModule } from '@angular/material/button';
     LoginComponent,
     LogoutComponent,
     RequestAccessComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddRequirementDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +64,13 @@ import { MatButtonModule } from '@angular/material/button';
     DxButtonModule,
     MatInputModule,
     MatButtonModule,
+    MatSlideToggleModule,
     DxSelectBoxModule,
-    DxTemplateModule
+    DxTemplateModule,
+    MatInputModule,
+    MatDialogModule,
+    MatOptionModule
+    
     
   ],
   providers: [],
