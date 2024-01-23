@@ -3,7 +3,7 @@
 import { Account } from "./Account";
 
 export interface Requirement {
-    requirementId: number;
+    requirementId: number ;
     startDate: string;
     endDate: string;
     requiredNo: number;
