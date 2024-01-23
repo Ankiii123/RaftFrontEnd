@@ -1,8 +1,10 @@
 <!-- requirement.component.html -->
 
+<span class="header">
 <h2>Requirements</h2>
 
-<button mat-button (click)="openAddRequirementDialog()">Add Requirement</button>
+<button mat-button (click)="openAddRequirementDialog()"  class="add-btn">Add Requirement</button>
+</span>
 
 <dx-data-grid
     [dataSource]="requirements"
@@ -15,16 +17,16 @@
     (onRowRemoving)="onRowRemoving($event)"
     
 >
-    
-    <button mat-button (click)="openAddRequirementDialog()">Add Requirement</button>
 
 
     <dxo-filter-row [visible]="true"></dxo-filter-row >
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
-    <!-- <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" ></dxo-editing> -->
+    <dxo-editing mode="row"  [allowUpdating]="true" [allowDeleting]="true" ></dxo-editing>
     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+
+    <!-- <div class="dx-datagrid-text-content" role="presentation">Actions</div> -->
 
     <button mat-button (click)="openAddRequirementDialog()">Add Requirement</button>
 
@@ -35,12 +37,7 @@
     <dxi-column dataField="job_description" caption="Job Description"  [width]="'auto'" ></dxi-column>
     <dxi-column dataField="hiring_manager" caption="Hiring Manager"></dxi-column>
     <dxi-column dataField="account.name" caption="Account Name"></dxi-column>
-    <dxi-column caption="Actions" [width]="250" [fixed]="true" [allowSorting]="false" [allowFiltering]="false">
-        <h1>hi</h1>
-            <button >Edit</button>
-            <button mat-button >Delete</button>
-       
-    </dxi-column>
+    
     
     <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
 </dx-data-grid>

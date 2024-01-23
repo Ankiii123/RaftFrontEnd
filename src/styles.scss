@@ -88,6 +88,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   .dx-datagrid-text-content{
     float: left !important;
+    font-weight: 500 !important;
+    color:#0a0097;  
   }
   /* Edit Link */
   $fa-edit-icon: '\f040'; /* FontAwesome Unicode for the edit icon */
@@ -170,6 +172,9 @@ a{
   text-decoration: none !important
 }
 
+
+
+  
 
 
 
