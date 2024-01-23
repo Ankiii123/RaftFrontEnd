@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit{
     try {
       await firstValueFrom(this.service.createUser(response.credential)).then(
         (x) => {
-          // console.log(x.authToken);
+          console.log(x.authToken);
           this.service.setToken(x.authToken);
           this.service.setNewUserStatus(x.isNewuser);
           if(x.isNewUser) {
