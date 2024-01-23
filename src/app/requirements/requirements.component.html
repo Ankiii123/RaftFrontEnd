@@ -7,26 +7,29 @@
 </span>
 
 <dx-data-grid
+    [scrollLeft]="true"
     [dataSource]="requirements"
     [remoteOperations]="true"
-    [width]="'100%'"
+    [columnAutoWidth]="true"
+    [width]="'1380'"
     [height]="600"
     [showBorders]="true"
-    
     (onRowInserting)="onRowInserting($event)"
     (onRowRemoving)="onRowRemoving($event)"
     (onEditingStart)="onEditingStart($event)"
+    [showBorders]="false"
+
 >
 
 
     <dxo-filter-row [visible]="true"></dxo-filter-row >
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
-    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
     <dxo-editing mode="row"  [allowUpdating]="true" [allowDeleting]="true" ></dxo-editing>
     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
 
-    <!-- <div class="dx-datagrid-text-content" role="presentation">Actions</div> -->
+    <div class="dx-datagrid-text-content" role="presentation">Actions</div>
 
     <button mat-button (click)="openAddRequirementDialog()">Add Requirement</button>
 

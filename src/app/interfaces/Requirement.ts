@@ -9,7 +9,7 @@ export interface Requirement {
     requiredNo: number;
     jobDescription: string;
     hiringManager: string;
-    account: Account;
+    account: string;
 
   }
   

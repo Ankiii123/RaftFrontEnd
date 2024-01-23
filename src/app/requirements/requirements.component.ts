@@ -13,10 +13,182 @@ import { AccountService } from '../services/account.service';
   selector: 'app-requirements',
   templateUrl: './requirements.component.html',
   styleUrl: './requirements.component.scss',
-  
 })
+
 export class RequirementsComponent {
-  requirements: Requirement[] = [];
+  requirements: Requirement[] = [
+    {
+        requirementId: 201,
+        startDate: '2024-05-01',
+        endDate: '2024-06-15',
+        requiredNo: 8,
+        jobDescription: 'Project Manager',
+        hiringManager: 'Alice Johnson',
+        account: 'Company B',
+    },
+    {
+      requirementId: 201,
+      startDate: '2024-05-01',
+      endDate: '2024-06-15',
+      requiredNo: 8,
+      jobDescription: 'Project Manager',
+      hiringManager: 'Alice Johnson',
+      account: 'Company B',
+  },
+  {
+    requirementId: 201,
+    startDate: '2024-05-01',
+    endDate: '2024-06-15',
+    requiredNo: 8,
+    jobDescription: 'Project Manager',
+    hiringManager: 'Alice Johnson',
+    account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+},
+{
+  requirementId: 201,
+  startDate: '2024-05-01',
+  endDate: '2024-06-15',
+  requiredNo: 8,
+  jobDescription: 'Project Manager',
+  hiringManager: 'Alice Johnson',
+  account: 'Company B',
+}
+  ];
   accounts : Account[] = [];
   
 
@@ -31,7 +203,7 @@ export class RequirementsComponent {
   private fetchRequirements(): void {
     this.requirementService.getAllRequirements().subscribe((data) => {
     
-      this.requirements = data;
+      // this.requirements = data;
       console.log(this.requirements);
       this.accountService.getAllAccounts().subscribe((accountsData) => {
         this.accounts = accountsData;

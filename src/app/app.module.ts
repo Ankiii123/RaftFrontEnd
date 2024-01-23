@@ -52,9 +52,7 @@ import { UsersComponent } from './users/users.component'
     RequestAccessComponent,
     ProfileComponent,
     AddRequirementDialogComponent,
-
-    AddBenchCandidateDialogComponent
-
+    AddBenchCandidateDialogComponent,
     UsersComponent
 
   ],
