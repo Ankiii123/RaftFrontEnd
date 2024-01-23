@@ -1,0 +1,38 @@
+<!-- add-bench-candidate-dialog.component.html -->
+
+<h2 mat-dialog-title>Add Bench Candidate</h2>
+<div mat-dialog-content>
+  <!-- Add your form controls for bench candidate details here -->
+  <mat-form-field>
+    <mat-label>Candidate Name</mat-label>
+    <input matInput [(ngModel)]="newBenchCandidate.candidateName" name="candidateName" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <input matInput [(ngModel)]="newBenchCandidate.status" name="status" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Skill Set</mat-label>
+    <input matInput [(ngModel)]="newBenchCandidate.skill" name="skill" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Bench Period</mat-label>
+    <input matInput [(ngModel)]="newBenchCandidate.benchPeriod" name="benchPeriod" type="number" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>BM Employee Id</mat-label>
+    <input matInput [(ngModel)]="newBenchCandidate.benchManager.id" name="bench manager employee Id" type="number" required>
+  </mat-form-field>
+
+
+  <!-- You can add more form controls as needed -->
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button (click)="onSaveClick()">Save</button>
+</div>

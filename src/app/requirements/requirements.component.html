@@ -2,7 +2,7 @@
 
 <h2>Requirements</h2>
 
-<button mat-button (click)="openAddRequirementDialog()">Add Requirement</button>
+<button mat-button (click)="openAddRequirementDialog()">Add Requirements</button>
 
 <dx-data-grid
     [dataSource]="requirements"
@@ -10,37 +10,32 @@
     [width]="'100%'"
     [height]="600"
     [showBorders]="true"
-    (onRowUpdating)="onRowUpdating($event)"
+    
     (onRowInserting)="onRowInserting($event)"
     (onRowRemoving)="onRowRemoving($event)"
-    
+    (onEditingStart)="onEditingStart($event)"
 >
-    
-    <button mat-button (click)="openAddRequirementDialog()">Add Requirement</button>
+
 
 
     <dxo-filter-row [visible]="true"></dxo-filter-row >
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
-    <!-- <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" ></dxo-editing> -->
+    <dxo-editing mode="row"  [allowUpdating]="true" [allowDeleting]="true" ></dxo-editing>
     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
 
-    <button mat-button (click)="openAddRequirementDialog()">Add Requirement</button>
+    
 
     <dxi-column dataField="requirementId" caption="Requirement ID" ></dxi-column>
     <dxi-column dataField="startDate" caption="Start Date"></dxi-column>
     <dxi-column dataField="endDate" caption="End Date"></dxi-column>
     <dxi-column dataField="requiredNo" caption="Required No."></dxi-column>
-    <dxi-column dataField="job_description" caption="Job Description"  [width]="'auto'" ></dxi-column>
-    <dxi-column dataField="hiring_manager" caption="Hiring Manager"></dxi-column>
+    <dxi-column dataField="jobDescription" caption="Job Description"  [width]="'auto'" ></dxi-column>
+    <dxi-column dataField="hiringManager" caption="Hiring Manager"></dxi-column>
     <dxi-column dataField="account.name" caption="Account Name"></dxi-column>
-    <dxi-column caption="Actions" [width]="250" [fixed]="true" [allowSorting]="false" [allowFiltering]="false">
-        <h1>hi</h1>
-            <button >Edit</button>
-            <button mat-button >Delete</button>
-       
-    </dxi-column>
+    
+    
     
     <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
 </dx-data-grid>

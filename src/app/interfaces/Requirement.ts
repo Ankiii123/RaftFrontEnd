@@ -7,8 +7,8 @@ export interface Requirement {
     startDate: string;
     endDate: string;
     requiredNo: number;
-    job_description: string;
-    hiring_manager: string;
+    jobDescription: string;
+    hiringManager: string;
     account: Account;
 
   }
