@@ -2,6 +2,8 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { BenchCandidate } from '../interfaces/Bench';
 import { BenchService } from '../services/bench-candidate.service';
 import { Skill } from '../interfaces/Skill';
+import { MatDialog } from '@angular/material/dialog';
+import { AddBenchCandidateDialogComponent } from '../add-bench-candidate-dialog/add-bench-candidate-dialog.component';
 
 
 
@@ -14,7 +16,7 @@ export class BenchCandidatesComponent implements OnInit {
   benchCandidates: BenchCandidate[] = [];
   
 
-  constructor( private benchService : BenchService) {
+  constructor( private benchService : BenchService , public dialog: MatDialog) {
 
   }
 
@@ -88,6 +90,15 @@ export class BenchCandidatesComponent implements OnInit {
       console.log(this.benchCandidates);
     });
     
+  }
+
+  openAddBenchCandidateDialog() : void{
+    const dialogRef = this.dialog.open(AddBenchCandidateDialogComponent, {
+      width: '400px',
+      data: {
+        
+      },
+    }); 
   }
 
 
