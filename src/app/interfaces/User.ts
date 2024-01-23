@@ -2,7 +2,7 @@ import { Account } from "./Account";
 import { Role } from "./Role";
 export interface User {
     employeeId: number,
-    email: string,
+    emailId: string,
     role: Role,
     accounts: Set<Account>
 }
