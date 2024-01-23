@@ -1,12 +1,14 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, Input, NgZone, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
   @Input() collapsed = false;
@@ -19,7 +21,7 @@ export class HeaderComponent implements OnInit {
   darkClass ='theme-dark';
   lightClass='theme-light';
 
-  constructor(public overlay:OverlayContainer){
+  constructor(public overlay:OverlayContainer, private router: Router, private _ngZone: NgZone, private service: AuthService){
   }
 
   @HostListener('window:resize', ['$event'])
@@ -29,6 +31,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void{
     this.checkCanShowSearchAsOverlay(window.innerWidth);
+
     this.switchTheme.valueChanges.subscribe((currentMode)=>{
     this.className=currentMode?this.lightClass:this.darkClass;
 
@@ -40,6 +43,15 @@ export class HeaderComponent implements OnInit {
     }
     }
     )
+  }
+
+  logout() {
+    console.log("logout clicked");
+    
+    this.service.signOutExternal();
+    this._ngZone.run(() => {
+      this.router.navigate(['/']).then(() => window.location.reload());
+    })
   }
 
   getHeadClass(): string{

@@ -1,3 +1,4 @@
+
 <div class="head" [ngClass]="getHeadClass()">
 <div class="head-content">
     <div class="head-content-left">
@@ -9,7 +10,7 @@
         </div>
     </div>
         <div class="head-content-right">
-            <mat-slide-toggle [formControl]="switchTheme">Theme</mat-slide-toggle>
+            <mat-slide-toggle [formControl]='switchTheme'>Theme</mat-slide-toggle>
             <!-- <div class="head-menu">
                 <div class="head-menu-item">
                     <button class="head-menu-item-btn ripple">
@@ -20,15 +21,15 @@
             
             <div class="head-user-avatar-container">
                 <div class="head-user-avatar">
-                    <a routerLink="/profile"><img id="user" src="../../assets/userLogo.png"></a>
+                    <button mat-button [matMenuTriggerFor]="menu"><a><img id="user" src="../../assets/userLogo.png"></a></button>
+                    <mat-menu #menu="matMenu">
+                        <a routerLink="/profile" mat-menu-item>Profile</a>
+                        <button (click)="logout()">LogOut</button>
+                    </mat-menu>
+                    
                     <!-- <div class="circle-indicator pulse"></div> -->
                 </div>
             </div>
             <!-- app.component.html -->
-
-   
- 
-  
-
         </div>
 </div>

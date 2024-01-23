@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RequestAccessComponent } from './request-access/request-access.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   
@@ -26,6 +27,9 @@ const routes: Routes = [
   },
   {
     path: 'bench', component: BenchCandidatesComponent
+  },
+  {
+    path: 'users', component: UsersComponent
   },
   {
     path: '',
