@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
     "@fortawesome/fontawesome-free": "^6.5.1",
+    "@material/menu": "^15.0.0-canary.a246a4439.0",
     "@types/google-one-tap": "^1.2.6",
     "devextreme": "23.2.3",
     "devextreme-angular": "^23.2.3",

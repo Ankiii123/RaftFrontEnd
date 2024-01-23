@@ -29,6 +29,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AddRequirementDialogComponent } from './add-requirement-dialog-component/add-requirement-dialog-component.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
+import { UsersComponent } from './users/users.component'
+
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { MatOptionModule } from '@angular/material/core';
     LogoutComponent,
     RequestAccessComponent,
     ProfileComponent,
-    AddRequirementDialogComponent
+    AddRequirementDialogComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,9 @@ import { MatOptionModule } from '@angular/material/core';
     DxTemplateModule,
     MatInputModule,
     MatDialogModule,
-    MatOptionModule
+    MatOptionModule,
+    MatInputModule,
+    MatMenuModule,
     
     
   ],

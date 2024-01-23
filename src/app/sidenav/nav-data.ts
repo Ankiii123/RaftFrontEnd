@@ -25,6 +25,12 @@ export const navbarData = [
         label: 'Bench'
     },
     {
+        routerLink: 'users',
+        icon: 'fal fa-address-book',
+        label: 'Users'
+    },
+
+    {
         routerLink: 'profile',
         icon: 'fal fa-user',
         label: 'Profile'
