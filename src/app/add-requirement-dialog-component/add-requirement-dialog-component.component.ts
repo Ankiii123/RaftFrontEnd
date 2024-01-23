@@ -23,8 +23,8 @@ export class AddRequirementDialogComponent {
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
       requiredNo: [null, Validators.required],
-      job_description: [null, Validators.required],
-      hiring_manager: [null, Validators.required],
+      jobDescription: [null, Validators.required],
+      hiringManager: [null, Validators.required],
       accountName: [null, Validators.required],
     });
 
@@ -43,7 +43,6 @@ export class AddRequirementDialogComponent {
       const formValue = this.newRequirementForm.value;
       this.dialogRef.close(formValue);
     } else {
-      // Handle validation error
       console.error('Validation failed. Please fill in all required fields.');
     }
   }

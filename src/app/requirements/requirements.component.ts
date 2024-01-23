@@ -51,8 +51,8 @@ export class RequirementsComponent {
           startDate: '',
           endDate: '',
           requiredNo: null,
-          job_description: '',
-          hiring_manager: '',
+          jobDescription: '',
+          hiringManager: '',
           accountName: null,
         },
       },
@@ -68,8 +68,6 @@ export class RequirementsComponent {
           
           result.account = {
             id: selectedAccount.id,
-           
-            
           };
 
           
@@ -78,7 +76,7 @@ export class RequirementsComponent {
           this.requirementService.createRequirement(result).subscribe(
             (createdRequirement) => {
               console.log('Requirement inserted successfully:', createdRequirement);
-              
+              this.fetchRequirements();
             },
             (error) => {
               console.error('Error inserting requirement:', error);
@@ -91,39 +89,87 @@ export class RequirementsComponent {
     });
   }
 
-  onRowUpdating(event: any) {
-    const updatedRequirement: Requirement = event.data;
-    const rowIndex: number = event.index;
+  onEditingStart(event: any): void {
+    // Open the edit dialog when editing starts
+    const dialogRef = this.dialog.open(AddRequirementDialogComponent, {
+        width: '400px',
+        data: {
+            accountNames: this.accounts.map((account) => account.name),
+            initialValues: {
+                requirementId: event.data.requirementId,
+                startDate: event.data.startDate,
+                endDate: event.data.endDate,
+                requiredNo: event.data.requiredNo,
+                job_description: event.data.job_description,
+                hiring_manager: event.data.hiring_manager,
+                accountName: event.data.account.name,
+            },
+        },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        
+        const selectedAccount = this.accounts.find((account) => account.name === result.accountName);
+
+        if (selectedAccount) {
+          
+          result.account = {
+            id: selectedAccount.id,
+          };
+
+          
+          delete result.accountName;
+          console.log(result);
+          this.requirementService.updateRequirement(result.requirementId,result).subscribe(
+            (updatedRequirement) => {
+              console.log('Requirement updated successfully:', updatedRequirement);
+              this.fetchRequirements();
+            },
+            (error) => {
+              console.error('Error inserting requirement:', error);
+            }
+          );
+        } else {
+          console.error('Selected account not found');
+        }
+      }
+    });
+}
+
+  // onRowUpdating(event: any) {
+  //   const updatedRequirement: Requirement = event.data;
+  //   const rowIndex: number = event.index;
   
     
-    if (updatedRequirement.account && updatedRequirement.account.name) {
-      const matchingAccount = this.accounts.find(
-        (account) => account.name === updatedRequirement.account.name
-      );
+  //   if (updatedRequirement.account && updatedRequirement.account.name) {
+  //     const matchingAccount = this.accounts.find(
+  //       (account) => account.name === updatedRequirement.account.name
+  //     );
   
-      if (!matchingAccount) {
+  //     if (!matchingAccount) {
         
-        alert('No account with the specified name found.');
-      } else {
-        // Update the requirement with the account ID
-        updatedRequirement.account.id = matchingAccount.id;
+  //       alert('No account with the specified name found.');
+  //     } else {
+  //       // Update the requirement with the account ID
+  //       updatedRequirement.account.id = matchingAccount.id;
   
-        // Use the service to update the requirement in the backend
-        this.requirementService.updateRequirement(matchingAccount.id, updatedRequirement).subscribe(
-          (response) => {
-            console.log('Requirement updated successfully', response);
-            this.requirements[rowIndex] = response;
-          },
-          (error) => {
-            console.error('Error updating requirement:', error);
-          }
-        );
-      }
-    } else {
-      // Handle the case when 'account' property is undefined or has missing properties
-      console.error('Invalid account data:', updatedRequirement.account);
-    }
-  }
+  //       // Use the service to update the requirement in the backend
+  //       this.requirementService.updateRequirement(matchingAccount.id, updatedRequirement).subscribe(
+  //         (response) => {
+  //           console.log('Requirement updated successfully', response);
+  //           this.requirements[rowIndex] = response;
+  //         },
+  //         (error) => {
+  //           console.error('Error updating requirement:', error);
+  //         }
+  //       );
+  //     }
+  //   } else {
+  //     // Handle the case when 'account' property is undefined or has missing properties
+  //     console.error('Invalid account data:', updatedRequirement.account);
+  //   }
+  // }
   
 
   onRowInserting(event: any) {
@@ -148,7 +194,7 @@ export class RequirementsComponent {
       this.requirementService.deleteRequirement(requirementId).subscribe(
         () => {
           console.log('Requirement removed successfully');
-          
+          this.fetchRequirements();
         },
         (error) => {
           console.error('Error removing requirement:', error);

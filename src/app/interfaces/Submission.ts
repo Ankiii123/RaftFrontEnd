@@ -1,5 +1,7 @@
 // submission.model.ts
 
+import { BenchCandidate } from "./Bench";
+import { Requirement } from "./Requirement";
 import { SubmissionStatus } from "./SubmissionStatus";
 
 export interface Submission {
@@ -11,16 +13,3 @@ export interface Submission {
   benchCandidate?: BenchCandidate;
 }
 
-export interface Requirement {
-  requirementId?: number;
-  startDate?: string;
-  endDate?: string;
-  requiredNo?: number;
-  job_description?: string;
-  hiring_manager?: string;
-  account?: { id: number };
-}
-
-export interface BenchCandidate {
-  // Define properties for BenchCandidate if needed
-}
