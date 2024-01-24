@@ -11,6 +11,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { RequestAccessComponent } from './request-access/request-access.component';
 import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './auth.guard';
+import { RoleGuard } from './role.guard';
+import { Role } from './interfaces/Role';
 
 const routes: Routes = [
   
@@ -30,7 +32,7 @@ const routes: Routes = [
     path: 'bench', component: BenchCandidatesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'users', component: UsersComponent, canActivate: [AuthGuard]
+    path: 'users', component: UsersComponent, canActivate: [AuthGuard, RoleGuard], data: {requiredRoles: [Role.ADMIN, Role.SUPER_ADMIN]}
   },
   {
     path: '',
