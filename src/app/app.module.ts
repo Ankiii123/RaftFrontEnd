@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BodyComponent } from './body/body.component';
@@ -30,6 +29,10 @@ import { AddRequirementDialogComponent } from './add-requirement-dialog-componen
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
 import { AddSubmissionDialogComponent } from './add-submission-dialog/add-submission-dialog.component';
+import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/add-bench-candidate-dialog.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { UsersComponent } from './users/users.component'
+
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { AddSubmissionDialogComponent } from './add-submission-dialog/add-submis
     RequestAccessComponent,
     ProfileComponent,
     AddRequirementDialogComponent,
-    AddSubmissionDialogComponent
+    AddSubmissionDialogComponent,
+    AddBenchCandidateDialogComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,9 @@ import { AddSubmissionDialogComponent } from './add-submission-dialog/add-submis
     DxTemplateModule,
     MatInputModule,
     MatDialogModule,
-    MatOptionModule
+    MatOptionModule,
+    MatInputModule,
+    MatMenuModule,
     
     
   ],

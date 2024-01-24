@@ -2,6 +2,7 @@
 <!-- bench-candidates.component.html -->
 
     <h2>Bench Candidates</h2>
+    <button mat-button (click)="openAddBenchCandidateDialog()">Add Bench Candidates</button>
     <dx-data-grid
         [dataSource]="benchCandidates"
         [remoteOperations]="true"
@@ -12,6 +13,7 @@
         (onRowInserting)="onRowInserting($event)"
         (onRowRemoving)="onRowRemoving($event)"
     >
+      
        
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -26,7 +28,7 @@
         <dxi-column dataField="status" caption="Status"></dxi-column>
         <dxi-column dataField="skill" caption="Skill Set" ></dxi-column>
         <dxi-column dataField="benchPeriod" caption="Bench Period"></dxi-column>
-        <dxi-column dataField="benchManager.employeeId" caption="BM employeeId"></dxi-column>
+        <!-- <dxi-column dataField="benchManager.employeeId" caption="BM employeeId"></dxi-column> -->
         
         <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
     </dx-data-grid>

@@ -1,4 +1,4 @@
-export const navbarData = [
+export const dashboardData = [
     {
         routerLink: 'dashboard',
         icon: 'fal fa-home',
@@ -24,12 +24,6 @@ export const navbarData = [
         icon: 'fal fa-id-badge',
         label: 'Bench'
     },
-    {
-        routerLink: 'users',
-        icon: 'fal fa-address-book',
-        label: 'Users'
-    },
-
     {
         routerLink: 'profile',
         icon: 'fal fa-user',
