@@ -1,0 +1,69 @@
+
+<h2 mat-dialog-title>Add Submission</h2>
+<div mat-dialog-content [formGroup]="newSubmissionForm">
+  <mat-form-field>
+    <mat-label>Submission ID</mat-label>
+    <input matInput formControlName="submissionId" type="number" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Submission Date</mat-label>
+    <input matInput formControlName="submissionDate" type="date" required>
+  </mat-form-field>
+
+  
+  <mat-form-field>
+    <mat-label>Feedback</mat-label>
+    <input matInput formControlName="feedback" type="text" required>
+  </mat-form-field>
+
+ 
+<!-- submission status -->
+<mat-form-field>
+  <mat-label>Submission Status</mat-label>
+  <input matInput formControlName="submissionStatus" type="text" required>
+</mat-form-field>
+
+
+   <!-- for candidate name -->
+    <mat-form-field>
+    <mat-label>Bench Candidate Name</mat-label>
+    <mat-select formControlName="benchCandidateName">
+      <mat-option *ngFor="let benchCandidateName of data.benchCandidateNames" [value]="benchCandidateName">
+        {{ benchCandidateName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+
+<!--  reqirement Id -->
+<mat-form-field>
+  <mat-label>Requirement ID</mat-label>
+  <mat-select formControlName="requirementId">
+    <mat-option *ngFor="let requirementId of data.reqirementIds" [value]="requirementId">
+      {{ requirementId }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button (click)="onSaveClick()">Save</button>
+</div>
+
+
+
+
+<!-- submissionId?: number; -->
+<!-- submissionDate?: string; -->
+<!-- feedback?: string; -->
+<!-- submissionStatus?: SubmissionStatus;
+requirement?: Requirement; Requirement Id
+Account Name
+benchCandidate?: BenchCandidate  Name -->

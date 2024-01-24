@@ -67,7 +67,7 @@ export class RequirementsComponent {
         if (selectedAccount) {
           
           result.account = {
-            id: selectedAccount.id,
+            id: selectedAccount.account_id,
            
             
           };
@@ -106,10 +106,10 @@ export class RequirementsComponent {
         alert('No account with the specified name found.');
       } else {
         // Update the requirement with the account ID
-        updatedRequirement.account.id = matchingAccount.id;
+        updatedRequirement.account.account_id = matchingAccount.account_id;
   
         // Use the service to update the requirement in the backend
-        this.requirementService.updateRequirement(matchingAccount.id, updatedRequirement).subscribe(
+        this.requirementService.updateRequirement(matchingAccount.account_id, updatedRequirement).subscribe(
           (response) => {
             console.log('Requirement updated successfully', response);
             this.requirements[rowIndex] = response;

@@ -1,7 +1,7 @@
 // requirement.service.ts
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,22 +13,56 @@ export class RequirementService {
   constructor(private http: HttpClient) { }
 
   getAllRequirements(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/all`);
+    const header = new HttpHeaders()
+      .set('Content-type', 'text/plain;charset=UTF-8')
+      .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+    return this.http.get(
+      `${this.baseUrl}/all`,
+      { headers: header }
+    );
   }
 
   getRequirementById(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`);
+
+    const header = new HttpHeaders()
+    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+  return this.http.get(`${this.baseUrl}/${id}`,{ headers: header }
+  );
+    // return this.http.get(`${this.baseUrl}/${id}`);
   }
 
   createRequirement(requirement: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/create`, requirement);
+    const header = new HttpHeaders()
+    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+  return this.http.post(`${this.baseUrl}/create`, requirement,
+    { headers: header }
+  );
+
+
+
+    // return this.http.post(`${this.baseUrl}/create`, requirement);
   }
 
   updateRequirement(id: number, requirement: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}/update`, requirement);
+    const header = new HttpHeaders()
+    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+  return this.http.put(`${this.baseUrl}/${id}/update`, requirement,
+    { headers: header }
+  );
+    // return this.http.put(`${this.baseUrl}/${id}/update`, requirement);
   }
 
   deleteRequirement(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}/delete`);
+    const header = new HttpHeaders()
+    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+  return this.http.delete(
+    `${this.baseUrl}/${id}/delete`,
+    { headers: header }
+  );
+    // return this.http.delete(`${this.baseUrl}/${id}/delete`);
   }
 }
