@@ -1,14 +1,41 @@
-/* bench-candidates.component.scss */
+/* requirement.component.scss */
 @import 'devextreme/dist/css/dx.common.css';
 @import 'devextreme/dist/css/dx.light.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css'; // Adjust the path based on your theme
+
 
 h2 {
   margin-bottom: 20px;
   color: #0a0097 !important;
-
 }
 
-.dx-datagrid {
-  width: 100%;
-  margin-bottom: 1rem;
+ .add-btn {
+  display: flex;
+  background-color: #0a0097 !important;
+  color: #ffffff !important;
+ }
+ /* requirements.component.scss */
+
+button {
+  background-color: lighten($color: #0a0097, $amount: 60%) ;
+
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
+
+hover {
+  background-color: darken(#0a0097, 70%); /* Darken the color on hover */
+}
+
+
+ .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ }
+
+ 

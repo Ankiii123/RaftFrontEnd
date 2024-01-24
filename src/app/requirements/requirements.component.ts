@@ -19,7 +19,7 @@ export class RequirementsComponent {
     this.fetchRequirements();
   }
   private fetchRequirements(): void {
-    this.requirementService.getAllRequirements().subscribe((data) =>
+    this.requirementService.getAllRequirements().subscribe((data) =>{
       this.requirements = data;
       console.log(this.requirements);
       this.accountService.getAllAccounts().subscribe((accountsData) => {
@@ -48,9 +48,7 @@ export class RequirementsComponent {
       if (result) {
         const selectedAccount = this.accounts.find((account) => account.name === result.accountName);
         if (selectedAccount) {
-          result.account = {
-            id: selectedAccount.account_id,
-          };
+          result.account = selectedAccount;
           delete result.accountName;
           console.log(result);
           this.requirementService.createRequirement(result).subscribe(
@@ -89,9 +87,7 @@ export class RequirementsComponent {
       if (result) {
         const selectedAccount = this.accounts.find((account) => account.name === result.accountName);
         if (selectedAccount) {
-          result.account = {
-            id: selectedAccount.account_id,
-          };
+          result.account = selectedAccount;
           delete result.accountName;
           console.log(result);
           this.requirementService.updateRequirement(result.requirementId,result).subscribe(
@@ -154,10 +150,3 @@ export class RequirementsComponent {
       );
   }
 }
-
-
-
-
-
-
-
