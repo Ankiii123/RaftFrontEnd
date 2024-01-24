@@ -1,18 +1,14 @@
 import { Component, Inject } from '@angular/core';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Requirement } from '../interfaces/Requirement';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 @Component({
   selector: 'app-add-requirement-dialog-component',
   templateUrl: './add-requirement-dialog-component.component.html',
   styleUrl: './add-requirement-dialog-component.component.scss'
-  
 })
 export class AddRequirementDialogComponent {
   newRequirementForm: FormGroup;
-
   constructor(
     public dialogRef: MatDialogRef<AddRequirementDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,17 +23,14 @@ export class AddRequirementDialogComponent {
       hiringManager: [null, Validators.required],
       accountName: [null, Validators.required],
     });
-
     // Set initial values if provided
     if (data.initialValues) {
       this.newRequirementForm.patchValue(data.initialValues);
     }
   }
-
   onCancelClick(): void {
     this.dialogRef.close();
   }
-
   onSaveClick(): void {
     if (this.newRequirementForm.valid) {
       const formValue = this.newRequirementForm.value;

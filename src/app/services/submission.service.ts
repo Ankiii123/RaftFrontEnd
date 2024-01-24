@@ -16,7 +16,7 @@ export class SubmissionService {
   createSubmission(submission: Submission): Observable<Submission> {
 
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.post<Submission>(`${this.baseUrl}/create`, submission,
     { headers: header }
@@ -27,7 +27,7 @@ export class SubmissionService {
 
   getAllSubmissions(): Observable<Submission[]> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.get<Submission[]>(`${this.baseUrl}/all`,
     { headers: header }
@@ -38,7 +38,7 @@ export class SubmissionService {
 
   getSubmissionById(id: number): Observable<Submission> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.get<Submission>(`${this.baseUrl}/${id}`,
     { headers: header }
@@ -50,7 +50,7 @@ export class SubmissionService {
 
   updateSubmission(id: number, updatedSubmission: Submission): Observable<Submission> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.put<Submission>(`${this.baseUrl}/${id}/update`, updatedSubmission,
     { headers: header }
@@ -63,7 +63,7 @@ export class SubmissionService {
 
   deleteSubmission(id: number): Observable<void> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.delete<void>(`${this.baseUrl}/${id}/delete`,
     { headers: header }
