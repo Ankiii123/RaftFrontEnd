@@ -2,208 +2,25 @@ import { Component } from '@angular/core';
 import { Requirement } from '../interfaces/Requirement';
 import { RequirementService } from '../services/requirement.service';
 import { Account } from '../interfaces/Account';
-
 import { AddRequirementDialogComponent } from '../add-requirement-dialog-component/add-requirement-dialog-component.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../services/account.service';
-
-
 @Component({
   selector: 'app-requirements',
   templateUrl: './requirements.component.html',
   styleUrl: './requirements.component.scss',
 })
-
 export class RequirementsComponent {
-  requirements: Requirement[] = [
-    {
-        requirementId: 201,
-        startDate: '2024-05-01',
-        endDate: '2024-06-15',
-        requiredNo: 8,
-        jobDescription: 'Project Manager',
-        hiringManager: 'Alice Johnson',
-        account: 'Company B',
-    },
-    {
-      requirementId: 201,
-      startDate: '2024-05-01',
-      endDate: '2024-06-15',
-      requiredNo: 8,
-      jobDescription: 'Project Manager',
-      hiringManager: 'Alice Johnson',
-      account: 'Company B',
-  },
-  {
-    requirementId: 201,
-    startDate: '2024-05-01',
-    endDate: '2024-06-15',
-    requiredNo: 8,
-    jobDescription: 'Project Manager',
-    hiringManager: 'Alice Johnson',
-    account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-},
-{
-  requirementId: 201,
-  startDate: '2024-05-01',
-  endDate: '2024-06-15',
-  requiredNo: 8,
-  jobDescription: 'Project Manager',
-  hiringManager: 'Alice Johnson',
-  account: 'Company B',
-}
-  ];
+  requirements: Requirement[] = [];
   accounts : Account[] = [];
-  
-
   constructor(private requirementService : RequirementService ,public dialog: MatDialog,private accountService: AccountService,){}
-
-
-
   ngOnInit(): void {
     this.fetchRequirements();
   }
-
   private fetchRequirements(): void {
     this.requirementService.getAllRequirements().subscribe((data) => {
-    
-      // this.requirements = data;
+      this.requirements = data;
       console.log(this.requirements);
       this.accountService.getAllAccounts().subscribe((accountsData) => {
         this.accounts = accountsData;
@@ -211,8 +28,6 @@ export class RequirementsComponent {
     });
   });
   }
-   
-
   openAddRequirementDialog(): void {
     const dialogRef = this.dialog.open(AddRequirementDialogComponent, {
       width: '400px',
@@ -229,20 +44,13 @@ export class RequirementsComponent {
         },
       },
     });
-
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        
         const selectedAccount = this.accounts.find((account) => account.name === result.accountName);
-
         if (selectedAccount) {
-          
           result.account = {
             id: selectedAccount.id,
           };
-
-          
           delete result.accountName;
           console.log(result);
           this.requirementService.createRequirement(result).subscribe(
@@ -260,7 +68,6 @@ export class RequirementsComponent {
       }
     });
   }
-
   onEditingStart(event: any): void {
     // Open the edit dialog when editing starts
     const dialogRef = this.dialog.open(AddRequirementDialogComponent, {
@@ -278,19 +85,13 @@ export class RequirementsComponent {
             },
         },
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        
         const selectedAccount = this.accounts.find((account) => account.name === result.accountName);
-
         if (selectedAccount) {
-          
           result.account = {
             id: selectedAccount.id,
           };
-
-          
           delete result.accountName;
           console.log(result);
           this.requirementService.updateRequirement(result.requirementId,result).subscribe(
@@ -308,24 +109,18 @@ export class RequirementsComponent {
       }
     });
 }
-
   // onRowUpdating(event: any) {
   //   const updatedRequirement: Requirement = event.data;
   //   const rowIndex: number = event.index;
-  
-    
   //   if (updatedRequirement.account && updatedRequirement.account.name) {
   //     const matchingAccount = this.accounts.find(
   //       (account) => account.name === updatedRequirement.account.name
   //     );
-  
   //     if (!matchingAccount) {
-        
   //       alert('No account with the specified name found.');
   //     } else {
   //       // Update the requirement with the account ID
   //       updatedRequirement.account.id = matchingAccount.id;
-  
   //       // Use the service to update the requirement in the backend
   //       this.requirementService.updateRequirement(matchingAccount.id, updatedRequirement).subscribe(
   //         (response) => {
@@ -342,27 +137,19 @@ export class RequirementsComponent {
   //     console.error('Invalid account data:', updatedRequirement.account);
   //   }
   // }
-  
-
   onRowInserting(event: any) {
-    const newData = event.data; 
-
-   
+    const newData = event.data;
     this.requirementService.createRequirement(newData).subscribe(
       (createdRequirement) => {
         console.log('Requirement inserted successfully:', createdRequirement);
-       
       },
       (error) => {
         console.error('Error inserting requirement:', error);
-       
       }
     );
   }
-
   onRowRemoving(event: any) {
-    const requirementId = event.data.requirementId; 
-   
+    const requirementId = event.data.requirementId;
       this.requirementService.deleteRequirement(requirementId).subscribe(
         () => {
           console.log('Requirement removed successfully');
@@ -370,14 +157,14 @@ export class RequirementsComponent {
         },
         (error) => {
           console.error('Error removing requirement:', error);
-          
         }
       );
-    
   }
-
 }
 
-  
+
+
+
+
 
 

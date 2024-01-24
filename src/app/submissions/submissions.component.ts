@@ -18,7 +18,11 @@ export class SubmissionsComponent {
 
   private fetchSubmission() : void{
      this.submissionService.getAllSubmissions().subscribe(
-      data => this.submissions = data
+      (data) => {
+        this.submissions = data;
+        console.log(this.submissions);
+      }
+
      );
   }
 

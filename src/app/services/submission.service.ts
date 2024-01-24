@@ -9,7 +9,7 @@ import { Submission } from '../interfaces/Submission';
   providedIn: 'root'
 })
 export class SubmissionService {
-  private baseUrl = 'http://localhost:8080/submission'; 
+  private baseUrl = 'http://localhost:8080/api/submission'; 
 
   constructor(private http: HttpClient) { }
 
