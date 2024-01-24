@@ -1,39 +1,27 @@
 <h2>Users</h2>
 
-<button mat-button (click)="openAddRequirementDialog()">Add User</button>
-
 <dx-data-grid
-    [dataSource]="users"
+    [dataSource]="displayUsers"
     [remoteOperations]="true"
     [width]="'100%'"
     [height]="600"
     [showBorders]="true"
-    (onRowUpdating)="onRowUpdating($event)"
-    (onRowInserting)="onRowInserting($event)"
-    (onRowRemoving)="onRowRemoving($event)"   
+    
+    (onEditingStart)="onEditingStart($event)"
 >
-
-    <button mat-button (click)="openAddRequirementDialog()">Add User</button>
-
 
     <dxo-filter-row [visible]="true"></dxo-filter-row >
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
-    <!-- <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" ></dxo-editing> -->
+    <dxo-editing mode="row"  [allowUpdating]="true"></dxo-editing>
     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
 
-    <button mat-button (click)="openAddRequirementDialog()">Add User</button>
-
     <dxi-column dataField="employeeId" caption="Employee ID" ></dxi-column>
+    <dxi-column dataField="name" caption="Employee Name"></dxi-column>
     <dxi-column dataField="emailId" caption="Email ID"></dxi-column>
     <dxi-column dataField="role" caption="Role"></dxi-column>
-    <dxi-column dataField="accounts" caption="Accounts"></dxi-column>
-    <dxi-column caption="Actions" [width]="250" [fixed]="true" [allowSorting]="false" [allowFiltering]="false">
-            <button >Edit</button>
-            <button mat-button >Delete</button>
-       
-    </dxi-column>
+    <dxi-column dataField="accounts" caption="Accounts"  [width]="'auto'" ></dxi-column>
     
     <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
 </dx-data-grid>

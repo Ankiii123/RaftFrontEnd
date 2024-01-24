@@ -12,31 +12,31 @@ export class UserService {
 
   getAllUsers(): Observable<any> {
     const header = new HttpHeaders()
-      .set('Content-type', 'text/plain;charset=UTF-8')
+      .set('Content-type', 'application/json')
       .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.get(
-      `${this.baseUrl}/`,
+      `${this.baseUrl}/all`,
       { headers: header }
     );
   }
 
-  getUserById(id: number): Observable<any> {
+  getUserByEmployeeId(id: number): Observable<any> {
     const header = new HttpHeaders()
-      .set('Content-type', 'text/plain;charset=UTF-8')
+      .set('Content-type', 'application/json')
       .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.get(`${this.baseUrl}/${id}`, { headers: header });
   }
 
-  updateUser(id: number, user: any): Observable<any> {
+  updateUser(employeeId: number, user: any): Observable<any> {
     const header = new HttpHeaders()
-      .set('Content-type', 'text/plain;charset=UTF-8')
+      .set('Content-type', 'application/json')
       .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
-    return this.http.put(`${this.baseUrl}/${id}/update`, user, {headers: header});
+    return this.http.put(`${this.baseUrl}/${employeeId}/update`, user, {headers: header});
   }
 
   deleteUser(id: number): Observable<any> {
     const header = new HttpHeaders()
-      .set('Content-type', 'text/plain;charset=UTF-8')
+      .set('Content-type', 'application/json')
       .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.delete(`${this.baseUrl}/${id}/delete`, {headers: header});
   }

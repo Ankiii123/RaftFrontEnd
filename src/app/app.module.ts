@@ -33,7 +33,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/add-bench-candidate-dialog.component';
 
 import {MatMenuModule} from '@angular/material/menu';
-import { UsersComponent } from './users/users.component'
+import { UsersComponent } from './users/users.component';
+import { AddUserDialogComponentComponent } from './add-user-dialog-component/add-user-dialog-component.component'
 
 
 @NgModule({
@@ -52,10 +53,9 @@ import { UsersComponent } from './users/users.component'
     RequestAccessComponent,
     ProfileComponent,
     AddRequirementDialogComponent,
-
-    AddBenchCandidateDialogComponent
-
-    UsersComponent
+    AddBenchCandidateDialogComponent,
+    UsersComponent,
+    AddUserDialogComponentComponent
 
   ],
   imports: [
