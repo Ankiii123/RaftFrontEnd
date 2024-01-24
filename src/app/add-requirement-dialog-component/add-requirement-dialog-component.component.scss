@@ -74,6 +74,10 @@ $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     &:focus {
       border-color: $primary-color;
     }
+
+    &.ng-touched.ng-invalid {
+      border: 1px solid red !important;
+    }
   }
 }
 
@@ -96,7 +100,7 @@ $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: background-color 0.3s;
 
     &:first-child {
-      background-color: #bdbdbd;
+      background-color: #bdbdbd20;
       color: $text-color;
       margin-right: 10px;
 
@@ -106,12 +110,16 @@ $font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     &:last-child {
-      background-color: $secondary-color;
+      background-color: $primary-color;
       color: white;
 
       &:hover {
-        background-color: darken($secondary-color, 10%);
+        background-color: darken($primary-color, 10%);
       }
+    }
+
+    &.active {
+      scale: 0.93 !important;
     }
   }
 }
