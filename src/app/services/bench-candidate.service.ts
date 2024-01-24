@@ -1,4 +1,3 @@
-// src/app/services/requirement.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -11,6 +10,12 @@ export class BenchService {
   private apiUrl = 'http://localhost:8080/api/bench';
 
   constructor(private http: HttpClient) { }
+
+  private getHeaders(): HttpHeaders {
+    return new HttpHeaders()
+      .set('Content-type', 'text/plain;charset=UTF-8')
+      .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+  }
 
   getAllBenchCandidates(): Observable<BenchCandidate[]> {
 
@@ -56,5 +61,6 @@ export class BenchService {
   );
 
     // return this.http.delete<void>(`${this.apiUrl}/${id}/delete`);
+
   }
 }
