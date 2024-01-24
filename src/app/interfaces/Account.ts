@@ -1,9 +1,9 @@
 import { HierarchyTag } from "./HierarchyTag";
 import { User } from "./User";
 export interface Account {
-    id:number;
+    account_id:number;
     name: string;
     parentId: number;
-    hierarchyTag: HierarchyTag;
-    userRoles: Set<User>
+    HierarchyTag: HierarchyTag;
+    userRoleDTOS: Set<User>
 }

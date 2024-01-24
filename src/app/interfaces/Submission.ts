@@ -12,4 +12,3 @@ export interface Submission {
   requirement?: Requirement;
   benchCandidate?: BenchCandidate;
 }
-

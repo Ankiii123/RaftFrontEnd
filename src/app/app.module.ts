@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BodyComponent } from './body/body.component';
@@ -29,9 +28,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AddRequirementDialogComponent } from './add-requirement-dialog-component/add-requirement-dialog-component.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
-
+import { AddSubmissionDialogComponent } from './add-submission-dialog/add-submission-dialog.component';
 import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/add-bench-candidate-dialog.component';
-
 import {MatMenuModule} from '@angular/material/menu';
 import { UsersComponent } from './users/users.component'
 
@@ -52,9 +50,9 @@ import { UsersComponent } from './users/users.component'
     RequestAccessComponent,
     ProfileComponent,
     AddRequirementDialogComponent,
+    AddSubmissionDialogComponent,
     AddBenchCandidateDialogComponent,
     UsersComponent
-
   ],
   imports: [
     BrowserModule,
