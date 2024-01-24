@@ -12,7 +12,7 @@ export class AccountService {
   
   createAccount(account: any): Observable<string> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.post<string>(`${this.apiUrl}/create`, account,{ headers: header }
   );
@@ -20,7 +20,7 @@ export class AccountService {
   }
   updateAccount(id: number, updatedAccount: any): Observable<any> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.put<any>(`${this.apiUrl}/${id}/update`, updatedAccount,{ headers: header }
   );
@@ -28,7 +28,7 @@ export class AccountService {
   }
   getAllAccounts(): Observable<any[]> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type','application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     console.log("in getAllAccounts");
     return this.http.get<any[]>(`${this.apiUrl}/all`,{ headers: header }
@@ -37,14 +37,14 @@ export class AccountService {
   }
   getAccountById(id: number): Observable<any> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.get<any>(`${this.apiUrl}/${id}`,{ headers: header });
     // return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
   deleteAccountById(id: number): Observable<string> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type','application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.delete<string>(`${this.apiUrl}/${id}/delete`,{ headers: header });
    // return this.http.delete<string>(`${this.apiUrl}/${id}/delete`);

@@ -54,7 +54,7 @@ export class RequirementService {
   }
   getRequirementById(id: number): Observable<any> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.get(`${this.baseUrl}/${id}`,{ headers: header }
   );
@@ -62,7 +62,7 @@ export class RequirementService {
   }
   createRequirement(requirement: any): Observable<any> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.post(`${this.baseUrl}/create`, requirement,
     { headers: header }
@@ -71,7 +71,7 @@ export class RequirementService {
   }
   updateRequirement(id: number, requirement: any): Observable<any> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.put(`${this.baseUrl}/${id}/update`, requirement,
     { headers: header }
@@ -80,7 +80,7 @@ export class RequirementService {
   }
   deleteRequirement(id: number): Observable<any> {
     const header = new HttpHeaders()
-    .set('Content-type', 'text/plain;charset=UTF-8')
+    .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.delete(
     `${this.baseUrl}/${id}/delete`,

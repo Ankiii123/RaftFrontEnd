@@ -11,8 +11,6 @@
     [height]="600"
     [showBorders]="true"
     
-    (onRowInserting)="onRowInserting($event)"
-    (onRowRemoving)="onRowRemoving($event)"
     (onEditingStart)="onEditingStart($event)"
 >
 
@@ -22,7 +20,7 @@
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
-    <dxo-editing mode="row"  [allowUpdating]="true" [allowDeleting]="true" ></dxo-editing>
+    <dxo-editing mode="row"  [allowUpdating]="true" ></dxo-editing>
     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
 
     

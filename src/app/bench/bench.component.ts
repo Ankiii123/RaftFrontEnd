@@ -4,6 +4,8 @@ import { BenchService } from '../services/bench-candidate.service';
 import { Skill } from '../interfaces/Skill';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBenchCandidateDialogComponent } from '../add-bench-candidate-dialog/add-bench-candidate-dialog.component';
+import { User } from '../interfaces/User';
+import { UserService } from '../services/user.service';
 
 
 
@@ -14,9 +16,10 @@ import { AddBenchCandidateDialogComponent } from '../add-bench-candidate-dialog/
 })
 export class BenchCandidatesComponent implements OnInit {
   benchCandidates: BenchCandidate[] = [];
+  users: User[] = [];
   
 
-  constructor( private benchService : BenchService , public dialog: MatDialog) {
+  constructor( private benchService : BenchService , public dialog: MatDialog , private userService : UserService) {
 
   }
 
@@ -89,6 +92,12 @@ export class BenchCandidatesComponent implements OnInit {
       this.benchCandidates = data;
       console.log(this.benchCandidates);
     });
+
+    this.userService.getAllUsers().subscribe((userData) => {
+      
+      this.users = userData;
+      console.log(this.users);
+    });
     
   }
 
@@ -96,10 +105,45 @@ export class BenchCandidatesComponent implements OnInit {
     const dialogRef = this.dialog.open(AddBenchCandidateDialogComponent, {
       width: '400px',
       data: {
-        
+        benchManagerNames : this.users.map((user) => user.name),
+        initailValues:{
+          candidateName :'',
+          candidateStatus: '',
+          benchCandidateSkills : '',
+          benchPeriod : null,
+          benchManagerName : null,
+        }
       },
     }); 
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+
+        const selectedBenchManager = this.users.find((user) => user.name === result.benchManagerName);
+
+        if(selectedBenchManager){
+          result.benchManager = selectedBenchManager
+          delete result.benchManagerName;
+          console.log(result);
+
+          this.benchService.addCandidate(result).subscribe(
+            (createdBenchCandidate) =>{
+              console.log("bench candidate added successfully" , createdBenchCandidate);
+              this.fetchCandidates();
+            },
+            (error) =>{
+              console.error("error while creating candidate" , error);
+            }
+          );
+        }else{
+          console.error('selected bench manager not found');
+        }
+        
+        
+      }
+    });
+  
   }
+
 
 
 }

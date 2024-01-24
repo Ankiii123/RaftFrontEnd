@@ -1,8 +1,10 @@
 import { Account } from "./Account";
 import { Role } from "./Role";
 export interface User {
+    id: number,
+    name: string,
     employeeId: number,
-    email: string,
+    emailId: string,
     role: Role,
     accounts: Set<Account>
 }

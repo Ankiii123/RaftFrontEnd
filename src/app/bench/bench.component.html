@@ -19,16 +19,16 @@
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxo-group-panel [visible]="true"></dxo-group-panel>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
-        <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"></dxo-editing>
+        <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"></dxo-editing>
         <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
         
 
         <dxi-column dataField="candidateName" caption="Name"></dxi-column>
         <dxi-column dataField="id" caption="ID"></dxi-column>
-        <dxi-column dataField="status" caption="Status"></dxi-column>
-        <dxi-column dataField="skill" caption="Skill Set" ></dxi-column>
+        <dxi-column dataField="candidateStatus" caption="Status"></dxi-column>
+        <dxi-column dataField="benchCandidateSkills" caption="Skill Set" ></dxi-column>
         <dxi-column dataField="benchPeriod" caption="Bench Period"></dxi-column>
-        <!-- <dxi-column dataField="benchManager.employeeId" caption="BM employeeId"></dxi-column> -->
+        <dxi-column dataField="benchManager.name" caption="BM employeeId"></dxi-column>
         
         <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
     </dx-data-grid>
