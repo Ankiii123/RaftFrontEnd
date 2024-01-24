@@ -1,40 +1,47 @@
 <!-- add-requirement-dialog.component.html -->
-<h2 mat-dialog-title>Add Requirement</h2>
-<div mat-dialog-content [formGroup]="newRequirementForm">
-  <mat-form-field>
-    <mat-label>Requirement ID</mat-label>
-    <input matInput formControlName="requirementId" type="number" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Start Date</mat-label>
-    <input matInput formControlName="startDate" type="date" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>End Date</mat-label>
-    <input matInput formControlName="endDate" type="date" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Required No.</mat-label>
-    <input matInput formControlName="requiredNo" type="number" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Job Description</mat-label>
-    <input matInput formControlName="jobDescription" type="text" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Hiring Manager</mat-label>
-    <input matInput formControlName="hiringManager" type="text" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Account Name</mat-label>
-    <mat-select formControlName="accountName">
-      <mat-option *ngFor="let accountName of data.accountNames" [value]="accountName">
+<h2 class="dialog-title">Add Requirement</h2>
+<form [formGroup]="newRequirementForm" class="custom-form" (ngSubmit)="onSaveClick()">
+  <div class="form-field">
+    <label for="requirementId">Requirement ID*</label>
+    <input id="requirementId" type="number" formControlName="requirementId" required>
+  </div>
+
+  <div class="form-field">
+    <label for="startDate">Start Date*</label>
+    <input id="startDate" type="text" formControlName="startDate" required>
+  </div>
+
+  <div class="form-field">
+    <label for="endDate">End Date*</label>
+    <input id="endDate" type="text" formControlName="endDate" required>
+  </div>
+
+  <div class="form-field">
+    <label for="requiredNo">Required No.*</label>
+    <input id="requiredNo" type="number" formControlName="requiredNo" required>
+  </div>
+
+  <div class="form-field">
+    <label for="jobDescription">Job Description*</label>
+    <input id="jobDescription" type="text" formControlName="jobDescription" required>
+  </div>
+
+  <div class="form-field">
+    <label for="hiringManager">Hiring Manager*</label>
+    <input id="hiringManager" type="text" formControlName="hiringManager" required>
+  </div>
+
+  <div class="form-field">
+    <label for="accountName">Account Name*</label>
+    <select id="accountName" formControlName="accountName">
+      <option *ngFor="let accountName of data.accountNames" [value]="accountName">
         {{ accountName }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancelClick()">Cancel</button>
-  <button mat-button (click)="onSaveClick()">Save</button>
-</div>
+      </option>
+    </select>
+  </div>
+
+  <div class="dialog-actions">
+    <button type="button" class="cancel-button" (click)="onCancelClick()">Cancel</button>
+    <button type="submit" class="save-button">Save</button>
+  </div>
+</form>

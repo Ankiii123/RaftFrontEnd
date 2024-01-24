@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RequestAccessComponent } from './request-access/request-access.component';
+
 import { DataService } from './services/data.service';
 import { NavigationEnd, Router } from '@angular/router';
 

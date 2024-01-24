@@ -14,7 +14,6 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RequestAccessComponent } from './request-access/request-access.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -49,7 +48,6 @@ import { AddUserDialogComponentComponent } from './add-user-dialog-component/add
     HeaderComponent,
     LoginComponent,
     LogoutComponent,
-    RequestAccessComponent,
     ProfileComponent,
     AddRequirementDialogComponent,
     AddBenchCandidateDialogComponent,

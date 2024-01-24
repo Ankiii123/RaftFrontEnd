@@ -4,6 +4,13 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css'; // Adjust the path based on your theme
 
 
+.head-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100% !important;
+}
+
 h2 {
   margin-bottom: 20px;
   color: #0a0097 !important;
@@ -13,22 +20,16 @@ h2 {
   display: flex;
   background-color: #0a0097 !important;
   color: #ffffff !important;
+  transition: 0.1s;
  }
  /* requirements.component.scss */
 
-button {
-  background-color: lighten($color: #0a0097, $amount: 60%) ;
-
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+.add-btn:hover {
+  background-color: #06005f !important; /* Darken the color on hover */
 }
 
-hover {
-  background-color: darken(#0a0097, 70%); /* Darken the color on hover */
+.add-btn:active {
+  scale: 0.93 !important;
 }
 
 
