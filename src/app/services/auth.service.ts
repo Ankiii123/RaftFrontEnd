@@ -41,10 +41,8 @@ export class AuthService {
     localStorage.setItem("newUserStatus", isNewUser ? "true": "false");
   }
   
-  public fetchUserRole(token: String): Observable<any> {
-    const header = new HttpHeaders()
-                      .set('Content-type', 'text/plain;charset=UTF-8')
-                      .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+  public fetchUserRole(token: string): Observable<any> {
+    const header = new HttpHeaders().set('Content-type', 'application/json');
     return this.httpClient.get(
       this.path + `api/auth/getUser/${token}`,
       {headers: header}

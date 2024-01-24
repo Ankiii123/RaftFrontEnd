@@ -7,9 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   private baseUrl = 'http://localhost:8080/api/userRoles';
-
   constructor(private http: HttpClient) { }
-
   getAllUsers(): Observable<any> {
     const header = new HttpHeaders()
       .set('Content-type', 'application/json')
@@ -19,7 +17,6 @@ export class UserService {
       { headers: header }
     );
   }
-
   getUserByEmployeeId(id: number): Observable<any> {
     const header = new HttpHeaders()
       .set('Content-type', 'application/json')
@@ -40,4 +37,4 @@ export class UserService {
       .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.delete(`${this.baseUrl}/${id}/delete`, {headers: header});
   }
-}
+}  

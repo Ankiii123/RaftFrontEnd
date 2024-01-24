@@ -88,8 +88,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   .dx-datagrid-text-content{
     float: left !important;
-   
-    font-weight: bold;
+    font-weight: 500 !important;
+    color:#0a0097;  
   }
   /* Edit Link */
   $fa-edit-icon: '\f040'; /* FontAwesome Unicode for the edit icon */
@@ -172,6 +172,60 @@ a{
   text-decoration: none !important
 }
 
+@keyframes cascade {
+  0% {
+    position: relative;
+    opacity: 0;
+    top: -10px;
+  }
+  100%{
+    position: relative;
+    opacity: 1;
+    top: 0px;
+  }
+}
+
+tbody[role="presentation"] {
+
+  @for $i from 2 through 20 {
+    tr:nth-child(#{$i}) {
+      opacity: 0;
+      transform: translateX(-20px);    
+      animation: slideInFromLeft 0.2s ease-in-out forwards;
+      animation-delay: 0.07s * $i;
+    }
+  }
+
+  tr:nth-child(even) {
+    background-color: #f4f7fa;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateY0(-50px);
+    scale: 0.95;
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0px);
+    scale: 1.05;
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+    scale: 1;
+  }
+}
+
+table tbody {
+  border-radius: 10px !important;
+}
+
+
+
+  
 
 
 
