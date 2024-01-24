@@ -10,26 +10,29 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RequestAccessComponent } from './request-access/request-access.component';
 import { UsersComponent } from './users/users.component';
+import { AuthGuard } from './auth.guard';
+import { RoleGuard } from './role.guard';
+import { Role } from './interfaces/Role';
 
 const routes: Routes = [
   
   {
-    path: 'dashboard', component: DashboardComponent
+    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'requirements', component: RequirementsComponent
+    path: 'requirements', component: RequirementsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'submissions', component: SubmissionsComponent
+    path: 'submissions', component: SubmissionsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'fulfillments', component: FulfillmentsComponent
+    path: 'fulfillments', component: FulfillmentsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'bench', component: BenchCandidatesComponent
+    path: 'bench', component: BenchCandidatesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'users', component: UsersComponent
+    path: 'users', component: UsersComponent, canActivate: [AuthGuard, RoleGuard], data: {requiredRoles: [Role.ADMIN, Role.SUPER_ADMIN]}
   },
   {
     path: '',

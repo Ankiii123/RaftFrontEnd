@@ -1,1 +1,27 @@
-<p>users works!</p>
+<h2>Users</h2>
+
+<dx-data-grid
+    [dataSource]="displayUsers"
+    [remoteOperations]="true"
+    [width]="'100%'"
+    [height]="600"
+    [showBorders]="true"
+    
+    (onEditingStart)="onEditingStart($event)"
+>
+
+    <dxo-filter-row [visible]="true"></dxo-filter-row >
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <dxo-editing mode="row"  [allowUpdating]="true"></dxo-editing>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+
+    <dxi-column dataField="employeeId" caption="Employee ID" ></dxi-column>
+    <dxi-column dataField="name" caption="Employee Name"></dxi-column>
+    <dxi-column dataField="emailId" caption="Email ID"></dxi-column>
+    <dxi-column dataField="role" caption="Role"></dxi-column>
+    <dxi-column dataField="accounts" caption="Accounts"  [width]="'auto'" ></dxi-column>
+    
+    <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+</dx-data-grid>

@@ -45,7 +45,7 @@ export class RequirementService {
   constructor(private http: HttpClient) { }
   getAllRequirements(): Observable<any> {
     const header = new HttpHeaders()
-      .set('Content-type', 'application/json')
+      .set('Content-type',  'application/json')
       .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.get(
       `${this.baseUrl}/all`,
@@ -62,9 +62,8 @@ export class RequirementService {
   }
   createRequirement(requirement: any): Observable<any> {
     const header = new HttpHeaders()
-    .set('Content-type', 'application/json')
-    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`)
-    
+    .set('Content-type',  'application/json')
+    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   return this.http.post(`${this.baseUrl}/create`, requirement,
     { headers: header }
   );

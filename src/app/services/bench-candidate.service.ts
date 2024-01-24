@@ -6,7 +6,8 @@ import { BenchCandidate } from '../interfaces/Bench';
   providedIn: 'root'
 })
 export class BenchService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'http://localhost:8080/api/bench';
+
   constructor(private http: HttpClient) { }
   private getHeaders(): HttpHeaders {
     return new HttpHeaders()
@@ -14,19 +15,46 @@ export class BenchService {
       .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
   }
   getAllBenchCandidates(): Observable<BenchCandidate[]> {
-    const headers = this.getHeaders();
-    return this.http.get<BenchCandidate[]>(`${this.apiUrl}/bench/all`, { headers });
-  }
+
+ const header = new HttpHeaders()
+      .set('Content-type',  'application/json')
+      .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+    return this.http.get<BenchCandidate[]>(`${this.apiUrl}/all`,
+      { headers: header }
+    );
+
+
+    // return this.http.get<BenchCandidate[]>(`${this.apiUrl}/all`);
+  }    
+
   addCandidate(candidate: BenchCandidate): Observable<BenchCandidate> {
-    const headers = this.getHeaders();
-    return this.http.post<BenchCandidate>(`${this.apiUrl}/bench/addCandidate`, candidate, { headers });
+    const header = new HttpHeaders()
+    .set('Content-type',  'application/json')
+    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+  return this.http.post<BenchCandidate>(`${this.apiUrl}/addCandidate`, candidate,
+    { headers: header }
+  );
+
+
+    // return this.http.post<BenchCandidate>(`${this.apiUrl}/addCandidate`, candidate);
   }
   updateCandidate(id: number, updatedCandidate: BenchCandidate): Observable<BenchCandidate> {
-    const headers = this.getHeaders();
-    return this.http.put<BenchCandidate>(`${this.apiUrl}/bench/${id}/update`, updatedCandidate, { headers });
+    const header = new HttpHeaders()
+    .set('Content-type',  'application/json')
+    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+  return this.http.put<BenchCandidate>(`${this.apiUrl}/${id}/update`, updatedCandidate,
+    { headers: header }
+  );
+    // return this.http.put<BenchCandidate>(`${this.apiUrl}/${id}/update`, updatedCandidate);
   }
   deleteCandidate(id: number): Observable<void> {
-    const headers = this.getHeaders();
-    return this.http.delete<void>(`${this.apiUrl}/bench/${id}/delete`, { headers });
+    const header = new HttpHeaders()
+    .set('Content-type',  'application/json')
+    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+  return this.http.delete<void>(`${this.apiUrl}/${id}/delete`,
+    { headers: header }
+  );
+
+    // return this.http.delete<void>(`${this.apiUrl}/${id}/delete`);
   }
 }

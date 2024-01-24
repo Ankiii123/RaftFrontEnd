@@ -12,11 +12,11 @@ export class RoleGuard implements CanActivate {
     this.token = localStorage.getItem("auth_token") || "";
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    const requiredRole = route.data['required_role'] as string;
+    const requiredRoles = route.data['required_roles'];
     return this.authService.fetchUserRole(localStorage.getItem("auth_token") || "").pipe(
       map((response) => {
         console.log(response);
-        return response.role === requiredRole;
+        return requiredRoles.includes(response.role);
       })
     );
   }
