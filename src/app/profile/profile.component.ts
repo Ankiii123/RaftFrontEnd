@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit{
     employeeId: 0,
     emailId: '',
     role: Role.DEFAULT,
-    accounts: new Set()
+    accounts: []
 }
 
 
