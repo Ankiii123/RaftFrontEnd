@@ -29,7 +29,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AddRequirementDialogComponent } from './add-requirement-dialog-component/add-requirement-dialog-component.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
+
 import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/add-bench-candidate-dialog.component';
+
+import {MatMenuModule} from '@angular/material/menu';
+import { UsersComponent } from './users/users.component'
+
 
 @NgModule({
   declarations: [
@@ -47,7 +52,11 @@ import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/a
     RequestAccessComponent,
     ProfileComponent,
     AddRequirementDialogComponent,
+
     AddBenchCandidateDialogComponent
+
+    UsersComponent
+
   ],
   imports: [
     BrowserModule,
@@ -71,7 +80,9 @@ import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/a
     DxTemplateModule,
     MatInputModule,
     MatDialogModule,
-    MatOptionModule
+    MatOptionModule,
+    MatInputModule,
+    MatMenuModule,
     
     
   ],
