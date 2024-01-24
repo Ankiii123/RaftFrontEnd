@@ -1,17 +1,28 @@
-submission.component.html
+<!-- submission.component.html -->
 
-<h2>Submissions</h2>
+
+
+<span class="header">
+    <h2>Submissions</h2>
+    
+    <button mat-button (click)="openAddSubmissionDialog()"  class="add-btn">Add Submission</button>
+    </span>
+
 <dx-data-grid
     [dataSource]="submissions"
     [remoteOperations]="true"
     [width]="'100%'"
     [height]="600"
+    (onEditingStart)="onEditingStart($event)"
     [showBorders]="true">
+
+
+
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
-    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"></dxo-editing>
+    <dxo-editing mode="row"  [allowUpdating]="true" ></dxo-editing>
     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
 
     <dxi-column dataField="submissionId" caption="Submission ID"></dxi-column>

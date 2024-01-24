@@ -19,7 +19,8 @@ export class RequirementsComponent {
     this.fetchRequirements();
   }
   private fetchRequirements(): void {
-    this.requirementService.getAllRequirements().subscribe((data) =>
+    this.requirementService.getAllRequirements().subscribe((data) => {
+
       this.requirements = data;
       console.log(this.requirements);
       this.accountService.getAllAccounts().subscribe((accountsData) => {
@@ -48,11 +49,11 @@ export class RequirementsComponent {
       if (result) {
         const selectedAccount = this.accounts.find((account) => account.name === result.accountName);
         if (selectedAccount) {
-          result.account = {
-            id: selectedAccount.account_id,
-          };
+          result.account = selectedAccount
+
           delete result.accountName;
           console.log(result);
+          
           this.requirementService.createRequirement(result).subscribe(
             (createdRequirement) => {
               console.log('Requirement inserted successfully:', createdRequirement);
@@ -79,8 +80,8 @@ export class RequirementsComponent {
                 startDate: event.data.startDate,
                 endDate: event.data.endDate,
                 requiredNo: event.data.requiredNo,
-                job_description: event.data.job_description,
-                hiring_manager: event.data.hiring_manager,
+                jobDescription: event.data.jobDescription,
+                hiringManager: event.data.hiringManager,
                 accountName: event.data.account.name,
             },
         },
@@ -89,9 +90,8 @@ export class RequirementsComponent {
       if (result) {
         const selectedAccount = this.accounts.find((account) => account.name === result.accountName);
         if (selectedAccount) {
-          result.account = {
-            id: selectedAccount.account_id,
-          };
+          result.account = selectedAccount
+
           delete result.accountName;
           console.log(result);
           this.requirementService.updateRequirement(result.requirementId,result).subscribe(
@@ -112,8 +112,7 @@ export class RequirementsComponent {
   onRowUpdating(event: any) {
     const updatedRequirement: Requirement = event.data;
     const rowIndex: number = event.index;
-  
-    
+     
     if (updatedRequirement.account && updatedRequirement.account.name) {
       const matchingAccount = this.accounts.find(
         (account) => account.name === updatedRequirement.account.name
@@ -154,10 +153,3 @@ export class RequirementsComponent {
       );
   }
 }
-
-
-
-
-
-
-
