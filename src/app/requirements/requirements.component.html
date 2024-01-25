@@ -1,10 +1,12 @@
 <!-- requirement.component.html -->
-<h2>Requirements</h2>
-<button mat-button (click)="openAddRequirementDialog()">Add Requirements</button>
+<span class="head-container">
+    <h2>Requirements</h2>
+    <button mat-button (click)="openAddRequirementDialog()" class="add-btn">Add Requirements</button>
+</span>
 <dx-data-grid
     [dataSource]="requirements"
     [remoteOperations]="true"
-    [width]="'100%'"
+    [width]="'1380px'"
     [height]="600"
     [showBorders]="true"
     (onEditingStart)="onEditingStart($event)"

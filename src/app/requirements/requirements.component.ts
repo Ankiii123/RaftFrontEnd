@@ -106,6 +106,7 @@ export class RequirementsComponent {
       }
     });
 }
+
   onRowUpdating(event: any) {
     const updatedRequirement: Requirement = event.data;
     const rowIndex: number = event.index;
