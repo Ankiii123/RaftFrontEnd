@@ -25,14 +25,14 @@ import {MatSelectModule} from '@angular/material/select';
 import { DxButtonModule, DxDataGridModule, DxLookupModule, DxSelectBoxModule, DxTemplateModule } from 'devextreme-angular';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { AddRequirementDialogComponent } from './add-requirement-dialog-component/add-requirement-dialog-component.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatOptionModule } from '@angular/material/core';
+import {  MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { AddSubmissionDialogComponent } from './add-submission-dialog/add-submission-dialog.component';
 import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/add-bench-candidate-dialog.component';
 import {MatMenuModule} from '@angular/material/menu';
-import { UsersComponent } from './users/users.component'
-
+import { UsersComponent } from './users/users.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AddRequirementDialogComponent } from './add-requirement-dialog-component/add-requirement-dialog-component.component';
 
 @NgModule({
   declarations: [
@@ -79,9 +79,10 @@ import { UsersComponent } from './users/users.component'
     MatOptionModule,
     MatInputModule,
     MatMenuModule,
-    
-    
-  ],
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
+ ],
   providers: [],
   bootstrap: [AppComponent]
 })
