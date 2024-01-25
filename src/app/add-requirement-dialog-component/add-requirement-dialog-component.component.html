@@ -35,6 +35,7 @@
     <label for="accountName">Account Name*</label>
     <select id="accountName" formControlName="accountName">
       <option *ngFor="let accountName of data.accountNames" [value]="accountName">
+
         {{ accountName }}
       </option>
     </select>

@@ -17,10 +17,17 @@ export class RequirementsComponent {
   constructor(private requirementService : RequirementService ,public dialog: MatDialog,private accountService: AccountService,){}
   ngOnInit(): void {
     this.fetchRequirements();
+    
   }
   private fetchRequirements(): void {
     this.requirementService.getAllRequirements().subscribe((data) => {
       this.requirements = data;
+
+      this.requirements.sort((a, b) => {
+        const dateA = new Date(a.startDate).getTime();
+        const dateB = new Date(b.startDate).getTime();
+        return dateB- dateA;
+      });
       console.log(this.requirements);
       this.accountService.getAllAccounts().subscribe((accountsData) => {
         this.accounts = accountsData;
@@ -86,6 +93,8 @@ export class RequirementsComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+       
+        console.log(result);
         const selectedAccount = this.accounts.find((account) => account.name === result.accountName);
         if (selectedAccount) {
           result.account = selectedAccount
@@ -106,37 +115,7 @@ export class RequirementsComponent {
       }
     });
 }
-  onRowUpdating(event: any) {
-    const updatedRequirement: Requirement = event.data;
-    const rowIndex: number = event.index;
-     
-    if (updatedRequirement.account && updatedRequirement.account.name) {
-      const matchingAccount = this.accounts.find(
-        (account) => account.name === updatedRequirement.account.name
-      );
-  
-      if (!matchingAccount) {
-        alert('No account with the specified name found.');
-      } else {
-        // Update the requirement with the account ID
-        updatedRequirement.account.account_id = matchingAccount.account_id;
-  
-        // Use the service to update the requirement in the backend
-        this.requirementService.updateRequirement(matchingAccount.account_id, updatedRequirement).subscribe(
-          (response) => {
-            console.log('Requirement updated successfully', response);
-            this.requirements[rowIndex] = response;
-          },
-          (error) => {
-            console.error('Error updating requirement:', error);
-          }
-        );
-      }
-    } else {
-      // Handle the case when 'account' property is undefined or has missing properties
-      console.error('Invalid account data:', updatedRequirement.account);
-    }
-  }
+ 
   onRowRemoving(event: any) {
     const requirementId = event.data.requirementId;
       this.requirementService.deleteRequirement(requirementId).subscribe(
