@@ -1,27 +1,44 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import the necessary form-related modules
+import { BenchCandidateStatus } from '../interfaces/BenchCandidateStatus';
 @Component({
   selector: 'app-add-bench-candidate-dialog',
   templateUrl: './add-bench-candidate-dialog.component.html',
-  styleUrl: './add-bench-candidate-dialog.component.scss'
+  styleUrls: ['./add-bench-candidate-dialog.component.scss']
 })
 export class AddBenchCandidateDialogComponent {
-  newBenchCandidate: any = {}; // Use the appropriate interface or model for type checking
-
+  newBenchCandidateForm: FormGroup; // Declare a form group
   constructor(
     public dialogRef: MatDialogRef<AddBenchCandidateDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
-
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private formBuilder: FormBuilder // Inject the form builder
+  ) {
+    this.newBenchCandidateForm = this.formBuilder.group({
+      id:[null,Validators.required],
+      candidateName:[null, Validators.required],
+      candidateStatus:[null, Validators.required],
+      startDate:[null,Validators.required],
+      endDate:[null,Validators.required],
+      benchCandidateSkills :[null,Validators.required],
+      benchManagerName:[null, Validators.required],
+    });
+    if (data.initialValues) {
+      this.newBenchCandidateForm.patchValue(data.initialValues);
+    }
+  }
   onCancelClick(): void {
     this.dialogRef.close();
   }
-
   onSaveClick(): void {
-    // Perform any validation or additional logic here before closing the dialog
-    // You can access the entered data using this.newBenchCandidate
-    this.dialogRef.close(this.newBenchCandidate);
+    if (this.newBenchCandidateForm.valid) {
+      const formValue = this.newBenchCandidateForm.value;
+      this.dialogRef.close(formValue);
+    } else {
+      console.error('Validation failed. Please fill in all required fields.');
+    }
   }
 }
+
+
+

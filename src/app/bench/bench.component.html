@@ -1,40 +1,29 @@
-
 <!-- bench-candidates.component.html -->
-
-    <h2>Bench Candidates</h2>
-    <button mat-button (click)="openAddBenchCandidateDialog()">Add Bench Candidates</button>
-    <dx-data-grid
-        [dataSource]="benchCandidates"
-        [remoteOperations]="true"
-        [width]="'100%'"
-        [height]="600"
-        [showBorders]="true"
-        (onRowUpdating)="onRowUpdating($event)"
-        (onRowInserting)="onRowInserting($event)"
-        (onRowRemoving)="onRowRemoving($event)"
-    >
-      
-       
-        <dxo-filter-row [visible]="true"></dxo-filter-row>
-        <dxo-header-filter [visible]="true"></dxo-header-filter>
-        <dxo-group-panel [visible]="true"></dxo-group-panel>
-        <dxo-scrolling mode="virtual"></dxo-scrolling>
-        <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"></dxo-editing>
-        <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
-        
-
-        <dxi-column dataField="candidateName" caption="Name"></dxi-column>
-        <dxi-column dataField="id" caption="ID"></dxi-column>
-        <dxi-column dataField="status" caption="Status"></dxi-column>
-        <dxi-column dataField="skill" caption="Skill Set" ></dxi-column>
-        <dxi-column dataField="benchPeriod" caption="Bench Period"></dxi-column>
-        <!-- <dxi-column dataField="benchManager.employeeId" caption="BM employeeId"></dxi-column> -->
-        
+<h2>Bench Candidates</h2>
+<button mat-button (click)="openAddBenchCandidateDialog()">Add Bench Candidates</button>
+<dx-data-grid
+    [dataSource]="benchCandidates"
+    [remoteOperations]="true"
+    [width]="'100%'"
+    [height]="600"
+    [showBorders]="true"
+    (onEditingStart)="onEditingStart($event)"
+>
+ <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <dxo-editing mode="row" [allowUpdating]="true"></dxo-editing>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>  
+    
+    
+    
+    <dxi-column dataField="id" caption="Candidate ID"></dxi-column>
+    <dxi-column dataField="candidateName" caption="Candidate Name"></dxi-column>
+      <dxi-column dataField="candidateStatus" caption="Status"></dxi-column>
+      <dxi-column dataField="startDate" caption="Start Date"></dxi-column>
+      <dxi-column dataField="endDate" caption="End Date"></dxi-column>
+    <dxi-column dataField="benchCandidateSkills" caption="Skills" ></dxi-column>
+    <dxi-column dataField="benchManager.name" caption="Bench Manager Name"></dxi-column>
         <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
-    </dx-data-grid>
-
-
-
-
-
-
+</dx-data-grid>

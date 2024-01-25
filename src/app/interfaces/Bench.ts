@@ -9,7 +9,8 @@ export interface BenchCandidate {
   candidateStatus: string;
   candidateName : string;
   benchCandidateSkills: string; 
-  benchPeriod: number;
+  startDate:string,
+  endDate:string,
   benchManager: User;
  
 }

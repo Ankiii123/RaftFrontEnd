@@ -1,16 +1,27 @@
 
+
+
+
 <h2 mat-dialog-title>Add Submission</h2>
+
+
+
+
 <div mat-dialog-content [formGroup]="newSubmissionForm">
   <mat-form-field>
     <mat-label>Submission ID</mat-label>
     <input matInput formControlName="submissionId" type="number" required>
   </mat-form-field>
 
+
+
   <mat-form-field>
     <mat-label>Submission Date</mat-label>
-    <input matInput formControlName="submissionDate" type="date" required>
+    <input matInput  [matDatepicker]="startDatePicker" formControlName="submissionDate" name="submissionDate" readonly required >
+    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker ></mat-datepicker>
   </mat-form-field>
-
+ 
   
   <mat-form-field>
     <mat-label>Feedback</mat-label>
@@ -18,10 +29,13 @@
   </mat-form-field>
 
  
-<!-- submission status -->
 <mat-form-field>
   <mat-label>Submission Status</mat-label>
-  <input matInput formControlName="submissionStatus" type="text" required>
+  <mat-select formControlName="submissionStatus">
+    <mat-option *ngFor="let submissionStatus of data.submissionStatuses" [value]="submissionStatus">
+      {{ submissionStatus }}
+    </mat-option>
+  </mat-select>
 </mat-form-field>
 
 

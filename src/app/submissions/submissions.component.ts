@@ -7,6 +7,7 @@ import { RequirementService } from '../services/requirement.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BenchService } from '../services/bench-candidate.service';
 import { AddSubmissionDialogComponent } from '../add-submission-dialog/add-submission-dialog.component';
+import { SubmissionStatus } from '../interfaces/SubmissionStatus';
 
 @Component({
   selector: 'app-submissions',
@@ -45,6 +46,7 @@ export class SubmissionsComponent {
     const dialogRef = this.dialog.open(AddSubmissionDialogComponent, {
       width: '400px',
       data: {
+        submissionStatuses: Object.keys(SubmissionStatus),
         benchCandidateNames: this.benchCandidates.map((bench) => bench.candidateName),
         requirementIds:this.requirements.map((req)=>req.requirementId),
         initialValues: {
@@ -94,6 +96,7 @@ else{
         const dialogRef = this.dialog.open(AddSubmissionDialogComponent, {
             width: '400px',
             data: {
+              submissionStatuses: Object.keys(SubmissionStatus),
               benchCandidateNames: this.benchCandidates.map((bench) => bench.candidateName),
               requirementIds:this.requirements.map((req)=>req.requirementId),
               initialValues: {
