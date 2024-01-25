@@ -1,0 +1,37 @@
+
+<h2 mat-dialog-title>Add Fulfillment</h2>
+<div mat-dialog-content [formGroup]="newFulfillmentForm">
+  <mat-form-field>
+    <mat-label>Fulfillment ID</mat-label>
+    <input matInput formControlName="fulfillmentId" type="number" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Fulfillment Date</mat-label>
+    <input matInput formControlName="fulfillmentDate" type="date" required>
+  </mat-form-field>
+
+    <mat-form-field>
+    <mat-label>Submission</mat-label>
+    <mat-select formControlName="submission">
+      <mat-option *ngFor="let submission of data.displaySubmissions" [value]="submission">
+        {{ submission }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Fulfillment Status</mat-label>
+    <mat-select formControlName="fulfillmentStatus">
+      <mat-option *ngFor="let status of data.fulfillmentStatus" [value]="status">
+        {{ status }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button (click)="onSaveClick()">Save</button>
+</div>

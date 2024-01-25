@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit{
     accounts: []
 }
 
-
   constructor(private authService: AuthService){
   }
 
