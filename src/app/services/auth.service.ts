@@ -42,9 +42,9 @@ export class AuthService {
   }
   
   public fetchUserRole(token: string): Observable<any> {
-    const header = new HttpHeaders().set('Content-type', 'application/json');
+    const header = new HttpHeaders().set('Content-type', 'application/json').set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.httpClient.get(
-      this.path + `api/auth/getUser/${token}`,
+      this.path + `api/auth/getUser`,
       {headers: header}
     );
   }

@@ -8,7 +8,6 @@ import { BenchCandidatesComponent } from './bench/bench.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RequestAccessComponent } from './request-access/request-access.component';
 import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './auth.guard';
 import { RoleGuard } from './role.guard';
@@ -32,7 +31,7 @@ const routes: Routes = [
     path: 'bench', component: BenchCandidatesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'users', component: UsersComponent, canActivate: [AuthGuard, RoleGuard], data: {requiredRoles: [Role.ADMIN, Role.SUPER_ADMIN]}
+    path: 'users', component: UsersComponent, canActivate: [AuthGuard, RoleGuard], data: {required_roles: [Role.ADMIN, Role.SUPER_ADMIN]}
   },
   {
     path: '',
@@ -46,10 +45,6 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
-  },
-  {
-    path: 'requestAccess',
-    component: RequestAccessComponent
   }
 ];
 
