@@ -1,37 +1,30 @@
 <!-- add-requirement-dialog.component.html -->
-
 <h2 mat-dialog-title>Add Requirement</h2>
 <div mat-dialog-content [formGroup]="newRequirementForm">
   <mat-form-field>
     <mat-label>Requirement ID</mat-label>
     <input matInput formControlName="requirementId" type="number" required>
   </mat-form-field>
-
   <mat-form-field>
     <mat-label>Start Date</mat-label>
     <input matInput formControlName="startDate" type="date" required>
   </mat-form-field>
-
   <mat-form-field>
     <mat-label>End Date</mat-label>
     <input matInput formControlName="endDate" type="date" required>
   </mat-form-field>
-
   <mat-form-field>
     <mat-label>Required No.</mat-label>
     <input matInput formControlName="requiredNo" type="number" required>
   </mat-form-field>
-
   <mat-form-field>
     <mat-label>Job Description</mat-label>
     <input matInput formControlName="jobDescription" type="text" required>
   </mat-form-field>
-
   <mat-form-field>
     <mat-label>Hiring Manager</mat-label>
     <input matInput formControlName="hiringManager" type="text" required>
   </mat-form-field>
-
   <mat-form-field>
     <mat-label>Account Name</mat-label>
     <mat-select formControlName="accountName">

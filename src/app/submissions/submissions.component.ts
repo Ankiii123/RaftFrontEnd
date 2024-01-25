@@ -17,6 +17,7 @@ export class SubmissionsComponent {
   submissions:Submission[] = [];
   benchCandidates: BenchCandidate[] = [];
   requirements:Requirement[]=[];
+  selectedSubmission!:Submission;
   constructor(private submissionService: SubmissionService,private requirementService : RequirementService,private benchCandidateService: BenchService,public dialog: MatDialog){};
   
   ngOnInit(){
@@ -27,19 +28,19 @@ export class SubmissionsComponent {
      this.submissionService.getAllSubmissions().subscribe(
       (data) => {
               this.submissions = data;
-              console.log("submissions in submissions"+this.submissions);
+              console.log("submissions in submissions",this.submissions);
             this.benchCandidateService.getAllBenchCandidates().subscribe((benchData)=>{
               this.benchCandidates=benchData;
-              console.log("bench candidates in submissions"+this.benchCandidates);
+              console.log("bench candidates in submissions",this.benchCandidates);
             });
             this.requirementService.getAllRequirements().subscribe((requirementData)=>{
               this.requirements=requirementData;
-              console.log("Requirements in submissions"+this.requirements);
+              console.log("Requirements in submissions", this.requirements.map(requirement => {
+                return requirement.requirementId;
+              }));
             });
                      });
   }
-
-
   openAddSubmissionDialog(): void {
     const dialogRef = this.dialog.open(AddSubmissionDialogComponent, {
       width: '400px',
@@ -56,53 +57,93 @@ export class SubmissionsComponent {
         },
       },
     });
-    
-    dialogRef.afterClosed().subscribe((result) => {
+     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        
-        const selectedBenchCandidate = this.benchCandidates.find((benchCandidate) => benchCandidate.candidateName === result.candidateName);
-
+const selectedRequirement=this.requirements.find((requirement)=>requirement.requirementId===result.requirementId);
+const selectedBenchCandidate = this.benchCandidates.find((benchCandidate) => benchCandidate.candidateName === result.benchCandidateName);
+console.log("Selected Bench Candidate: ",selectedBenchCandidate);
         if (selectedBenchCandidate) {
-          
-          result.benchCandidate = {
-            id: selectedBenchCandidate.id,
-          };
-
-          
+          result.benchCandidate= selectedBenchCandidate
           delete result.benchCandidateName;
-          console.log(result);
+          
+          console.log("Result",result);
+        } else {
+          console.error('Selected bench candidate not found');
+        }
+if(selectedRequirement){
+  result.requirement=selectedRequirement;
+  delete result.requirementId;
+
+}
+else{
+  console.error("Selected requirement not found");
+}
           this.submissionService.createSubmission(result).subscribe(
             (createdSubmission) => {
               console.log('Submission inserted successfully:', createdSubmission);
-              
+              this.fetchSubmission();
             },
             (error) => {
               console.error('Error inserting submission:', error);
             }
           );
-        } else {
-          console.error('Selected bench candidate not found');
-        }
       }
     });
   }
-
-  onRowRemoving(event: any):void {
-        const submissionId = event.data.submissionId; 
-       
-          this.submissionService.deleteSubmission(submissionId).subscribe(
-            () => {
-              console.log('Requirement removed successfully');
-              
+      onEditingStart(event: any): void {
+        const dialogRef = this.dialog.open(AddSubmissionDialogComponent, {
+            width: '400px',
+            data: {
+              benchCandidateNames: this.benchCandidates.map((bench) => bench.candidateName),
+              requirementIds:this.requirements.map((req)=>req.requirementId),
+              initialValues: {
+                submissionId: event.data.submissionId,
+                submissionDate: event.data.submissionDate,
+                feedback:event.data.feedback,
+                submissionStatus:event.data.submissionStatus,
+                requirementId:event.data.requirement.requirementId,
+                benchCandidateName: event.data.benchCandidate.candidateName
+              },
             },
-            (error) => {
-              console.error('Error removing requirement:', error);
-              
+           });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            const selectedRequirement=this.requirements.find((requirement)=>requirement.requirementId===result.requirementId);
+            const selectedBenchCandidate = this.benchCandidates.find((benchCandidate) => benchCandidate.candidateName === result.benchCandidateName);
+            console.log("Selected Bench Candidate: ",selectedBenchCandidate);
+                    if (selectedBenchCandidate) {
+                      result.benchCandidate= selectedBenchCandidate
+                      delete result.benchCandidateName;
+                      console.log("Result",result);
+                    } else {
+                      console.error('Selected bench candidate not found');
+                    }
+
+            if(selectedRequirement){
+              result.requirement=selectedRequirement;
+              delete result.requirementId;
+            
             }
-          );
-        
-      }
+            else{
+              console.error("Selected requirement not found");
+            }
+
+            this.submissionService.updateSubmission(result.submissionId,result).subscribe(
+              (createdSubmission) => {
+                console.log('Submission updated successfully:', createdSubmission);
+                this.fetchSubmission();
+              },
+              (error) => {
+                console.error('Error updating submission:', error);
+              }
+            );
+         
+        }
+      });
+    }
 }
+
+
 
 
 
