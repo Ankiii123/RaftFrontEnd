@@ -32,7 +32,7 @@ const routes: Routes = [
     path: 'bench', component: BenchCandidatesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'users', component: UsersComponent, canActivate: [AuthGuard, RoleGuard], data: {requiredRoles: [Role.ADMIN, Role.SUPER_ADMIN]}
+    path: 'users', component: UsersComponent, canActivate: [AuthGuard, RoleGuard], data: {required_roles: [Role.ADMIN, Role.SUPER_ADMIN]}
   },
   {
     path: '',
