@@ -32,7 +32,8 @@ import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/a
 import {MatMenuModule} from '@angular/material/menu';
 import { UsersComponent } from './users/users.component';
 import { AddFulfillmentDialogComponent } from './add-fulfillment-dialog/add-fulfillment-dialog.component'
-import { AddUserDialogComponentComponent } from './add-user-dialog-component/add-user-dialog-component.component'
+import { AddUserDialogComponentComponent } from './add-user-dialog-component/add-user-dialog-component.component';
+import { DefaultUserPageComponent } from './default-user-page/default-user-page.component'
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AddUserDialogComponentComponent } from './add-user-dialog-component/add
     AddSubmissionDialogComponent,
     AddBenchCandidateDialogComponent,
     UsersComponent,
-    AddFulfillmentDialogComponent
+    AddFulfillmentDialogComponent,
+    DefaultUserPageComponent
   ],
   imports: [
     BrowserModule,

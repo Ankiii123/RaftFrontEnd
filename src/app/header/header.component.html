@@ -3,10 +3,14 @@
 <div class="head-content">
     <div class="head-content-left">
         <div class="search-container">
-            <div class="normal-search">
+            <div>
+                <h3>Home > Dashboard > Requirements</h3>
+            </div>
+            
+            <!-- <div class="normal-search">
                 <i class="fa fa-search search-icon"></i>
                 <input type="search" class="search" name="" id="" placeholder="Search...">
-            </div>
+            </div> -->
         </div>
     </div>
         <div class="head-content-right">
@@ -21,14 +25,16 @@
             
             <div class="head-user-avatar-container">
                 <div class="head-user-avatar">
-                    <button mat-button [matMenuTriggerFor]="menu"><a><img id="user" src="../../assets/userLogo.png"></a></button>
-                    <mat-menu #menu="matMenu">
-                        <a routerLink="/profile" mat-menu-item>Profile</a>
-                        <button (click)="logout()">LogOut</button>
-                    </mat-menu>
-                    
-                    <!-- <div class="circle-indicator pulse"></div> -->
-                </div>
+                    <div class="user-menu-container">
+                        <button class="mat-button" id="user-menu-trigger">
+                            <img id="user" src="../../assets/userLogo.png" alt="User Logo">
+                        </button>
+                        <div class="menu">
+                          <div id="profilee"><a href="/profile">Profile</a></div>
+                          <button (click)="logout()">LogOut</button>
+                        </div>
+                      </div>
+                      
             </div>
             <!-- app.component.html -->
         </div>

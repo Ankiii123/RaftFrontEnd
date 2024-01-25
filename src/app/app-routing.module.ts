@@ -12,6 +12,7 @@ import { UsersComponent } from './users/users.component';
 import { AuthGuard } from './auth.guard';
 import { RoleGuard } from './role.guard';
 import { Role } from './interfaces/Role';
+import { DefaultUserPageComponent } from './default-user-page/default-user-page.component';
 
 const routes: Routes = [
   
@@ -31,7 +32,7 @@ const routes: Routes = [
     path: 'bench', component: BenchCandidatesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'users', component: UsersComponent, canActivate: [AuthGuard, RoleGuard], data: {requiredRoles: [Role.ADMIN, Role.SUPER_ADMIN]}
+    path: 'users', component: UsersComponent, canActivate: [AuthGuard, RoleGuard], data: {required_roles: [Role.ADMIN, Role.SUPER_ADMIN]}
   },
   {
     path: '',
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'defaultPage',
+    component: DefaultUserPageComponent
   }
 ];
 
