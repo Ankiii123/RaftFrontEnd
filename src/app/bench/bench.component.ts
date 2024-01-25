@@ -7,8 +7,8 @@ import { AddBenchCandidateDialogComponent } from '../add-bench-candidate-dialog/
 import { User } from '../interfaces/User';
 import { UserService } from '../services/user.service';
 
-
-
+import { BenchCandidateStatus } from '../interfaces/BenchCandidateStatus';
+import { Role } from '../interfaces/Role';
 @Component({
   selector: 'app-bench-candidates',
   templateUrl: './bench.component.html',
@@ -17,113 +17,52 @@ import { UserService } from '../services/user.service';
 export class BenchCandidatesComponent implements OnInit {
   benchCandidates: BenchCandidate[] = [];
   users: User[] = [];
-  
-
   constructor( private benchService : BenchService , public dialog: MatDialog , private userService : UserService) {
-
   }
-
   ngOnInit(): void {
     this.fetchCandidates();
   }
 
-   deleteCandidate(candidate :BenchCandidate): void {
-    this.benchService.deleteCandidate(candidate.id).subscribe(() => {
-      
-      this.benchCandidates = this.benchCandidates.filter((c) => c.id !== candidate.id);
-    });
-  }
-  
-  onRowInserting(event: any): void {
-    console.log("inserting");
-    const newCandidate = event.data as BenchCandidate;
-    this.benchService.addCandidate(newCandidate).subscribe(
-      (response) => {
-        console.log('Row added successfully:', response);
-      },
-      (error) => {
-        console.error('Error adding row:', error);
-      }
-    );
 
-  }
-  
-  
-  
-  onRowUpdating(event: any): void {
-    console.log('Updating Data:', event.newData);
-    console.log('Event Key:', event.key.id);
-  
-    // Check if event.key is defined and is a number
-    if (event.key.id !== undefined && typeof event.key.id === 'number') {
-      const updatedCandidate = event.newData as BenchCandidate; 
-    
-       // Use event.key as the ID
-      this.benchService.updateCandidate(event.key.id, updatedCandidate).subscribe(
-        (response) => {
-          console.log('Row updated successfully:', response);
-        },
-        (error) => {
-          console.error('Error updating row:', error);
-        }
-      );
-    } else {
-      console.error('ID is not a number or is undefined. Cannot update the row.');
-    }
-  }
-  
-  
-  
-  onRowRemoving(event: any): void {
-    const candidateToDelete = event.data as BenchCandidate; // Assuming data is of type BenchCandidate
-    // Use event.data.id as the ID
-    this.benchService.deleteCandidate(candidateToDelete.id).subscribe(
-      () => {
-        console.log('Row deleted successfully.');
-      },
-      (error) => {
-        console.error('Error deleting row:', error);
-      }
-    );
-  }
   private fetchCandidates(): void {
     this.benchService.getAllBenchCandidates().subscribe((data) => {
-      
       this.benchCandidates = data;
-      console.log(this.benchCandidates);
+      console.log("Bench Candidate Data",this.benchCandidates);
+   
+    this.userService.getAllUsers().subscribe((userData) => {
+      this.users = userData;
+      console.log("User data",this.users);
     });
 
-    this.userService.getAllUsers().subscribe((userData) => {
-      
-      this.users = userData;
-      console.log(this.users);
-    });
-    
+  });
   }
 
   openAddBenchCandidateDialog() : void{
     const dialogRef = this.dialog.open(AddBenchCandidateDialogComponent, {
       width: '400px',
       data: {
-        benchManagerNames : this.users.map((user) => user.name),
-        initailValues:{
+
+        candidateStatuses: Object.keys(BenchCandidateStatus),
+        benchManagerNames : this.users.filter(user => user.role == Role.BENCH_MANAGER).map((user) => user.name),
+        initialValues:{
+          id:'',
           candidateName :'',
           candidateStatus: '',
           benchCandidateSkills : '',
-          benchPeriod : null,
+          startDate:'',
+          endDate:'',
           benchManagerName : null,
         }
       },
-    }); 
+    });
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-
         const selectedBenchManager = this.users.find((user) => user.name === result.benchManagerName);
-
         if(selectedBenchManager){
           result.benchManager = selectedBenchManager
           delete result.benchManagerName;
-          console.log(result);
+          console.log("Result",result);
 
           this.benchService.addCandidate(result).subscribe(
             (createdBenchCandidate) =>{
@@ -137,14 +76,56 @@ export class BenchCandidatesComponent implements OnInit {
         }else{
           console.error('selected bench manager not found');
         }
-        
-        
+
       }
     });
-  
   }
 
+  onEditingStart(event: any): void {
+    console.log("Edit button clicked");
+    //open dialog box
+    console.log("Event data", event.data);
+    const dialogRef = this.dialog.open(AddBenchCandidateDialogComponent, {
+        width: '400px',
+        data: {
+          candidateStatuses: Object.keys(BenchCandidateStatus),
+          benchManagerNames : this.users.map((user) => user.name),
+          initialValues:{
+            id:event.data.id,
+            candidateName :event.data.candidateName,
+            candidateStatus: event.data.candidateStatus,
+            startDate:event.data.startDate,
+            endDate:event.data.endDate,
+            benchCandidateSkills : event.data.benchCandidateSkills,
+            benchManagerName : event.data.benchManager.name,
+          }
+        },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const selectedBenchManager = this.users.find((user) => user.name === result.benchManagerName);
+        if (selectedBenchManager) {
+          result.benchManager = selectedBenchManager
+          delete result.benchManagerName;
+          console.log("Result",result);
+          this.benchService.updateCandidate(result.id,result).subscribe(
+            (updatedCandidate) => {
+              console.log('Bench Candidate updated successfully:', updatedCandidate);
+              this.fetchCandidates();
+            },
+            (error) => {
+              console.error('Error updating bench candidate:', error);
+            }
+          );
+        } else {
+          console.error('Selected bench manager not found');
+        }
+      }
+    });
 
 
 }
+
+}
+
 

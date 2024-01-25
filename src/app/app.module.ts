@@ -26,7 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AddRequirementDialogComponent } from './add-requirement-dialog-component/add-requirement-dialog-component.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { AddSubmissionDialogComponent } from './add-submission-dialog/add-submission-dialog.component';
 import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/add-bench-candidate-dialog.component';
 import {MatMenuModule} from '@angular/material/menu';
@@ -34,7 +34,7 @@ import { UsersComponent } from './users/users.component';
 import { AddFulfillmentDialogComponent } from './add-fulfillment-dialog/add-fulfillment-dialog.component'
 import { AddUserDialogComponentComponent } from './add-user-dialog-component/add-user-dialog-component.component';
 import { DefaultUserPageComponent } from './default-user-page/default-user-page.component'
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -70,6 +70,11 @@ import { DefaultUserPageComponent } from './default-user-page/default-user-page.
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
+    MatInputModule,
+    MatMenuModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
     HttpClientModule,
     MatCardModule,
     DxDataGridModule,

@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import the necessary form-related modules
 import { BenchCandidateStatus } from '../interfaces/BenchCandidateStatus';
-
 @Component({
   selector: 'app-add-bench-candidate-dialog',
   templateUrl: './add-bench-candidate-dialog.component.html',
@@ -10,27 +9,27 @@ import { BenchCandidateStatus } from '../interfaces/BenchCandidateStatus';
 })
 export class AddBenchCandidateDialogComponent {
   newBenchCandidateForm: FormGroup; // Declare a form group
-
   constructor(
     public dialogRef: MatDialogRef<AddBenchCandidateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder // Inject the form builder
   ) {
     this.newBenchCandidateForm = this.formBuilder.group({
+      id:[null,Validators.required],
       candidateName:[null, Validators.required],
       candidateStatus:[null, Validators.required],
+      startDate:[null,Validators.required],
+      endDate:[null,Validators.required],
       benchCandidateSkills :[null,Validators.required],
-      
-      benchPeriod:[null, Validators.required],
-      benchManager:[null, Validators.required],
-     
+      benchManagerName:[null, Validators.required],
     });
+    if (data.initialValues) {
+      this.newBenchCandidateForm.patchValue(data.initialValues);
+    }
   }
-
   onCancelClick(): void {
     this.dialogRef.close();
   }
-
   onSaveClick(): void {
     if (this.newBenchCandidateForm.valid) {
       const formValue = this.newBenchCandidateForm.value;
@@ -40,3 +39,6 @@ export class AddBenchCandidateDialogComponent {
     }
   }
 }
+
+
+
