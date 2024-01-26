@@ -1,6 +1,6 @@
 <!-- add-bench-candidate-dialog.component.html -->
 <h2 class="dialog-title">Bench Candidate</h2>
-<form class="custom-form" [formGroup]="newBenchCandidateForm">
+<form class="custom-form" [formGroup]="newBenchCandidateForm" (ngSubmit)="onSaveClick()">
   <!-- Add your form controls for bench candidate details here -->
   <div class="form-field">
     <label for="id">Candidate ID</label>

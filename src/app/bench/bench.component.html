@@ -26,7 +26,6 @@
     <dxi-column dataField="benchManager.name" caption="Bench Manager Name"></dxi-column>
         <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
 </dx-data-grid>
-=======
 
     <h2>Bench Candidates</h2>
     <button mat-button (click)="openAddBenchCandidateDialog()">Add Bench Candidates</button>
@@ -36,9 +35,6 @@
         [width]="'100%'"
         [height]="600"
         [showBorders]="true"
-        (onRowUpdating)="onRowUpdating($event)"
-        (onRowInserting)="onRowInserting($event)"
-        (onRowRemoving)="onRowRemoving($event)"
     >
       
        
@@ -60,9 +56,3 @@
         <!-- <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail> -->
     </dx-data-grid>
 
-
-
-
-
-
->>>>>>> kohina
