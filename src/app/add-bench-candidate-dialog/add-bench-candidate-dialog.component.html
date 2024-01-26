@@ -1,51 +1,52 @@
 <!-- add-bench-candidate-dialog.component.html -->
-<h2 mat-dialog-title>Bench Candidate</h2>
-<div mat-dialog-content [formGroup]="newBenchCandidateForm">
+<h2 class="dialog-title">Bench Candidate</h2>
+<form class="custom-form" [formGroup]="newBenchCandidateForm">
   <!-- Add your form controls for bench candidate details here -->
-  <mat-form-field>
-    <mat-label>Candidate ID</mat-label>
-    <input matInput formControlName="id" name="candidatId" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Candidate Name</mat-label>
-    <input matInput formControlName="candidateName" name="candidateName" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Candidate Status</mat-label>
-    <mat-select formControlName="candidateStatus">
-      <mat-option *ngFor="let candidateStatus of data.candidateStatuses" [value]="candidateStatus">
+  <div class="form-field">
+    <label for="id">Candidate ID</label>
+    <input id="id" type="number" formControlName="id" required>
+  </div>
+  <div class="form-field">
+    <label for="candidateName">Candidate Name</label>
+    <input id="candidateName" type="text" formControlName="candidateName" required>
+  </div>
+  <div class="form-field">
+    <label for="candidateStatus">Candidate Status</label>
+    <select id="candidateStatus" formControlName="candidateStatus">
+      <option *ngFor="let candidateStatus of data.candidateStatuses" [value]="candidateStatus">
         {{ candidateStatus }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Start Date</mat-label>
-    <input matInput  [matDatepicker]="startDatePicker" formControlName="startDate" name="startDate" readonly required >
-    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #startDatePicker ></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>End Date</mat-label>
-    <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" name="startDate" readonly required>
-    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #endDatePicker></mat-datepicker>
-    <mat-error *ngIf="newBenchCandidateForm.hasError('endDateLessThanStartDate')">End date cannot be less than start date</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Skills</mat-label>
-    <input matInput formControlName="benchCandidateSkills" name="benchCandidateSkills" required>
-  </mat-form-field>
-   <mat-form-field>
-      <mat-label>Bench Manager Name</mat-label>
-      <mat-select formControlName="benchManagerName">
-        <mat-option *ngFor="let benchManagerName of data.benchManagerNames" [value]="benchManagerName">
-          {{ benchManagerName }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+      </option>
+    </select>
   </div>
 
-  <div mat-dialog-actions>
-    <button mat-button (click)="onCancelClick()">Cancel</button>
-    <button mat-button (click)="onSaveClick()">Save</button>
+  <div class="form-field">
+    <label for="startDate">Start Date</label>
+    <input id="startDate" type="date" formControlName="startDate" required>
   </div>
+
+  <div class="form-field">
+    <label for="endDate">End Date</label>
+    <input id="endDate" type="date" formControlName="endDate" required>
+  </div>
+
+  <div class="form-field">
+    <label for="hiringManager">Skills</label>
+    <input id="benchCandidateSkills" type="text" formControlName="benchCandidateSkills" required>
+  </div>
+
+  <div class="form-field">
+    <label for="benchManagerName">Bench Manager Name</label>
+    <select id="benchManagerName" formControlName="benchManagerName">
+      <option *ngFor="let benchManagerName of data.benchManagerNames" [value]="benchManagerName">
+        {{ benchManagerName }}
+      </option>
+    </select>
+  </div>
+
+  <div class="dialog-actions">
+    <button type="button" class="cancel-button" (click)="onCancelClick()">Cancel</button>
+    <button type="submit" class="save-button">Save</button>
+  </div>
+
+  </form>
+
