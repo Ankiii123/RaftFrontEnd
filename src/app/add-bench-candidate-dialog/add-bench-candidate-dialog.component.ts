@@ -30,35 +30,12 @@ export class AddBenchCandidateDialogComponent {
   onCancelClick(): void {
     this.dialogRef.close();
   }
-  // onSaveClick(): void {
-  //   if (this.newBenchCandidateForm.valid) {
-  //     const formValue = this.newBenchCandidateForm.value;
-  //     this.dialogRef.close(formValue);
-  //   } else {
-  //     console.error('Validation failed. Please fill in all required fields.');
-  //   }
-  // }
-
   onSaveClick(): void {
-    this.markFormControlsTouched(this.newBenchCandidateForm);
-
     if (this.newBenchCandidateForm.valid) {
       const formValue = this.newBenchCandidateForm.value;
-      // console.log(formValue.startDate);
       this.dialogRef.close(formValue);
     } else {
       console.error('Validation failed. Please fill in all required fields.');
     }
   }
-
-  markFormControlsTouched(formGroup: FormGroup) {
-    Object.values(formGroup.controls).forEach(control => {
-      control.markAsTouched();
-
-      // You can add additional logic here if needed
-    });
-  }
 }
-
-
-

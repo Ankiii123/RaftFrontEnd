@@ -6,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddBenchCandidateDialogComponent } from '../add-bench-candidate-dialog/add-bench-candidate-dialog.component';
 import { User } from '../interfaces/User';
 import { UserService } from '../services/user.service';
-
 import { BenchCandidateStatus } from '../interfaces/BenchCandidateStatus';
 import { Role } from '../interfaces/Role';
 @Component({
@@ -22,26 +21,20 @@ export class BenchCandidatesComponent implements OnInit {
   ngOnInit(): void {
     this.fetchCandidates();
   }
-
-
   private fetchCandidates(): void {
     this.benchService.getAllBenchCandidates().subscribe((data) => {
       this.benchCandidates = data;
       console.log("Bench Candidate Data",this.benchCandidates);
-   
     this.userService.getAllUsers().subscribe((userData) => {
       this.users = userData;
       console.log("User data",this.users);
     });
-
   });
   }
-
   openAddBenchCandidateDialog() : void{
     const dialogRef = this.dialog.open(AddBenchCandidateDialogComponent, {
       width: '400px',
       data: {
-
         candidateStatuses: Object.keys(BenchCandidateStatus),
         benchManagerNames : this.users.filter(user => user.role == Role.BENCH_MANAGER).map((user) => user.name),
         initialValues:{
@@ -55,7 +48,6 @@ export class BenchCandidatesComponent implements OnInit {
         }
       },
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const selectedBenchManager = this.users.find((user) => user.name === result.benchManagerName);
@@ -63,7 +55,6 @@ export class BenchCandidatesComponent implements OnInit {
           result.benchManager = selectedBenchManager
           delete result.benchManagerName;
           console.log("Result",result);
-
           this.benchService.addCandidate(result).subscribe(
             (createdBenchCandidate) =>{
               console.log("bench candidate added successfully" , createdBenchCandidate);
@@ -76,11 +67,9 @@ export class BenchCandidatesComponent implements OnInit {
         }else{
           console.error('selected bench manager not found');
         }
-
       }
     });
   }
-
   onEditingStart(event: any): void {
     console.log("Edit button clicked");
     //open dialog box
@@ -122,10 +111,5 @@ export class BenchCandidatesComponent implements OnInit {
         }
       }
     });
-
-
 }
-
 }
-
-
