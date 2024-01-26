@@ -36,11 +36,9 @@ export class SubmissionsComponent {
             });
             this.requirementService.getAllRequirements().subscribe((requirementData)=>{
               this.requirements=requirementData;
-              console.log("Requirements in submissions", this.requirements.map(requirement => {
-                return requirement.requirementId;
-              }));
+              console.log("Requirements in submissions", this.requirements);
             });
-                     });
+      });
   }
   openAddSubmissionDialog(): void {
     const dialogRef = this.dialog.open(AddSubmissionDialogComponent, {
@@ -61,9 +59,9 @@ export class SubmissionsComponent {
     });
      dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-const selectedRequirement=this.requirements.find((requirement)=>requirement.requirementId===result.requirementId);
-const selectedBenchCandidate = this.benchCandidates.find((benchCandidate) => benchCandidate.candidateName === result.benchCandidateName);
-console.log("Selected Bench Candidate: ",selectedBenchCandidate);
+        const selectedRequirement=this.requirements.find((requirement)=>requirement.requirementId==result.requirementId);
+        const selectedBenchCandidate = this.benchCandidates.find((benchCandidate) => benchCandidate.candidateName === result.benchCandidateName);
+        console.log("Selected Bench Candidate: ",selectedBenchCandidate);
         if (selectedBenchCandidate) {
           result.benchCandidate= selectedBenchCandidate
           delete result.benchCandidateName;
@@ -75,7 +73,7 @@ console.log("Selected Bench Candidate: ",selectedBenchCandidate);
 if(selectedRequirement){
   result.requirement=selectedRequirement;
   delete result.requirementId;
-
+  console.log(result);
 }
 else{
   console.error("Selected requirement not found");

@@ -1,7 +1,7 @@
 <!-- bench-candidates.component.html -->
 <span class="head-container">
-    <h2>Bench Candidates</h2>
-    <button mat-button (click)="openAddBenchCandidateDialog()" class="add-btn">Add Bench Candidates</button>
+  <h2>Bench Candidates</h2>
+  <button mat-button (click)="openAddBenchCandidateDialog()" class="add-btn">Add Bench Candidate</button>
 </span>
 <button mat-button (click)="openAddBenchCandidateDialog()">Add Bench Candidates</button>
 <dx-data-grid
@@ -27,3 +27,4 @@
     <dxi-column dataField="benchManager.name" caption="Bench Manager Name"></dxi-column>
         <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
 </dx-data-grid>
+
