@@ -21,7 +21,11 @@
   <!-- Submission Status -->
   <div class="form-field">
     <label for="submissionStatus">Submission Status</label>
-    <input id="submissionStatus" formControlName="submissionStatus" type="text" required>
+    <select id="submissionStatus" formControlName="submissionStatus">
+      <option *ngFor="let status of data.submissionStatuses" [value]="status">
+        {{ status }}
+      </option>
+    </select>
   </div>
   <div class="form-field">
     <label for="candidateName">Bench Candidate Name</label>
@@ -41,10 +45,10 @@
       </option>
     </select>
   </div>
-</form>
 
 <!-- Dialog Actions -->
 <div class="dialog-actions">
   <button type="button" class="cancel-button" (click)="onCancelClick()">Cancel</button>
   <button type="submit" class="save-button">Save</button>
 </div>
+</form>
