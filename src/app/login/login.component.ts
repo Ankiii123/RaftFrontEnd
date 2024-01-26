@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {CredentialResponse, PromptMomentNotification} from 'google-one-tap';
 import { AuthService } from '../services/auth.service';
 import { firstValueFrom } from 'rxjs';
+import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
