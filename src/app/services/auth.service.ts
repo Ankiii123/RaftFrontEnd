@@ -36,13 +36,10 @@ export class AuthService {
   isTokenPresent():boolean {
     return localStorage.getItem("auth_token") != null;
   }
-
-  setNewUserStatus(isNewUser: boolean): void {
-    localStorage.setItem("newUserStatus", isNewUser ? "true": "false");
-  }
   
   public fetchUserRole(token: string): Observable<any> {
-    const header = new HttpHeaders().set('Content-type', 'application/json').set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
+    const header = new HttpHeaders().set('Content-type', 'application/json')
+                                    .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.httpClient.get(
       this.path + `api/auth/getUser`,
       {headers: header}

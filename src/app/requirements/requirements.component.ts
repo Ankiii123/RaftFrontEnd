@@ -6,6 +6,7 @@ import { AddRequirementDialogComponent } from '../add-requirement-dialog-compone
 import { Dialog } from '@angular/cdk/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../services/account.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-requirements',
   templateUrl: './requirements.component.html',
@@ -14,19 +15,24 @@ import { AccountService } from '../services/account.service';
 export class RequirementsComponent {
   requirements: Requirement[] = [];
   accounts : Account[] = [];
-  constructor(private requirementService : RequirementService ,public dialog: MatDialog,private accountService: AccountService,){}
+  constructor(private requirementService : RequirementService ,public dialog: MatDialog,private accountService: AccountService, private snackBar: MatSnackBar){}
   ngOnInit(): void {
     this.fetchRequirements();
   }
   private fetchRequirements(): void {
-    this.requirementService.getAllRequirements().subscribe((data) => {
+    this.requirementService.getAllRequirements().subscribe(
+      (data) => {
       this.requirements = data;
-      console.log(this.requirements);
-      this.accountService.getAllAccounts().subscribe((accountsData) => {
-        this.accounts = accountsData;
-      console.log(this.accounts);
+      console.log(this.requirements); 
+      },
+      (error) => {
+        this.openSnackBar(error)
+      }
+    );
+    this.accountService.getAllAccounts().subscribe((accountsData) => {
+      this.accounts = accountsData;
+    console.log(this.accounts);
     });
-  });
   }
   openAddRequirementDialog(): void {
     const dialogRef = this.dialog.open(AddRequirementDialogComponent, {
@@ -149,4 +155,11 @@ export class RequirementsComponent {
         }
       );
   }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+      panelClass: ['snackbar-success']
+    });
+  } 
 } 

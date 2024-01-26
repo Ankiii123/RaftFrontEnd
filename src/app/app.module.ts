@@ -27,6 +27,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AddRequirementDialogComponent } from './add-requirement-dialog-component/add-requirement-dialog-component.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatOptionModule } from '@angular/material/core';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AddSubmissionDialogComponent } from './add-submission-dialog/add-submission-dialog.component';
 import { AddBenchCandidateDialogComponent } from './add-bench-candidate-dialog/add-bench-candidate-dialog.component';
 import {MatMenuModule} from '@angular/material/menu';
@@ -75,6 +76,7 @@ import { AddUserDialogComponentComponent } from './add-user-dialog-component/add
     DxButtonModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
     MatSlideToggleModule,
     DxSelectBoxModule,
     DxTemplateModule,
@@ -83,8 +85,6 @@ import { AddUserDialogComponentComponent } from './add-user-dialog-component/add
     MatOptionModule,
     MatInputModule,
     MatMenuModule,
-    
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

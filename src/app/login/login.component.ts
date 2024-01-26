@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit{
         (x) => {
           console.log(x.authToken);
           this.service.setToken(x.authToken);
-          this.service.setNewUserStatus(x.isNewuser);
           if(x.isNewUser) {
             this.router.navigate(["/userdetailsform"])
           }
