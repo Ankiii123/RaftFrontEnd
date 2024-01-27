@@ -36,6 +36,9 @@ import { AddUserDialogComponentComponent } from './add-user-dialog-component/add
 import { DefaultUserPageComponent } from './default-user-page/default-user-page.component'
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AddRequirementDialogComponent } from './add-requirement-dialog-component/add-requirement-dialog-component.component';
+import { DonutChartComponent } from './donut-chart/donut-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DonutChartService } from './services/donut-chart.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +61,8 @@ import { AddRequirementDialogComponent } from './add-requirement-dialog-componen
     AddBenchCandidateDialogComponent,
     UsersComponent,
     AddFulfillmentDialogComponent,
-    DefaultUserPageComponent
+    DefaultUserPageComponent,
+    DonutChartComponent
   ],
   imports: [
     BrowserModule,
@@ -93,9 +97,10 @@ import { AddRequirementDialogComponent } from './add-requirement-dialog-componen
     MatMenuModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgxChartsModule
  ],
-  providers: [],
+  providers: [DonutChartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

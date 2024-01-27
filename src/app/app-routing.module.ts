@@ -13,8 +13,12 @@ import { AuthGuard } from './auth.guard';
 import { RoleGuard } from './role.guard';
 import { Role } from './interfaces/Role';
 import { DefaultUserPageComponent } from './default-user-page/default-user-page.component';
+import { DonutChartComponent } from './donut-chart/donut-chart.component';
 
 const routes: Routes = [
+  {
+    path: 'donut-chart', component: DonutChartComponent,
+  },
   
   {
     path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]
