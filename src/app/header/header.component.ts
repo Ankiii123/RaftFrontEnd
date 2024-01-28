@@ -1,14 +1,14 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, HostBinding, HostListener, Input, NgZone, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrls: ['./header.component.scss'], // Fix the typo in 'styleUrl' to 'styleUrls'
 })
 export class HeaderComponent implements OnInit {
   @Input() collapsed = false;
@@ -17,32 +17,50 @@ export class HeaderComponent implements OnInit {
   canShowSearchAsOverlay = false;
 
   switchTheme = new FormControl(false)
-  @HostBinding('class') className='';
-  darkClass ='theme-dark';
-  lightClass='theme-light';
+  @HostBinding('class') className = '';
+  darkClass = 'theme-dark';
+  lightClass = 'theme-light';
 
-  constructor(public overlay:OverlayContainer, private router: Router, private _ngZone: NgZone, private service: AuthService){
-  }
+  // Add the new variable pageName
+  pageName: string = '';
+  pathWords: any;
+
+  constructor(
+    public _dataService: DataService,
+    public overlay: OverlayContainer,
+    private router: Router,
+    private route: ActivatedRoute, // Import ActivatedRoute
+    private _ngZone: NgZone,
+    private service: AuthService
+  ) {}
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any){
+  onResize(event: any) {
     this.checkCanShowSearchAsOverlay(window.innerWidth);
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
+    // Set the initial value for pageName based on the current URL path
+    this.pageName = this.router.url;
+    this.pathWords = this.pageName.split('/').filter(word => word !== '');
+
     this.checkCanShowSearchAsOverlay(window.innerWidth);
 
-    this.switchTheme.valueChanges.subscribe((currentMode)=>{
-    this.className=currentMode?this.lightClass:this.darkClass;
+    this.switchTheme.valueChanges.subscribe((currentMode) => {
+      this.className = currentMode ? this.lightClass : this.darkClass;
 
-    if(currentMode){
-      this.overlay.getContainerElement().classList.add(this.darkClass)
-    }
-    else{
-      this.overlay.getContainerElement().classList.remove(this.darkClass)
-    }
-    }
-    )
+      if (currentMode) {
+        this.overlay.getContainerElement().classList.add(this.darkClass)
+      } else {
+        this.overlay.getContainerElement().classList.remove(this.darkClass)
+      }
+    });
+
+    // Update pageName whenever the route changes
+    this.router.events.subscribe(() => {
+      this.pageName = this.router.url;
+      this.pathWords = this.pageName.split('/').filter(word => word !== '');
+    });
   }
 
   logout() {
@@ -54,26 +72,23 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  getHeadClass(): string{
+  getHeadClass(): string {
     let styleClass = '';
 
-    if(this.collapsed && this.screenWidth > 768){
+    if (this.collapsed && this.screenWidth > 768) {
       styleClass = 'head-trimmed';
-    }
-    else{
+    } else {
       styleClass = 'head-md-screen';
     }
 
     return styleClass;
   }
 
-  checkCanShowSearchAsOverlay(innerWidth: number): void{
-    if(innerWidth < 845){
+  checkCanShowSearchAsOverlay(innerWidth: number): void {
+    if (innerWidth < 845) {
       this.canShowSearchAsOverlay = true;
-    }
-    else{
+    } else {
       this.canShowSearchAsOverlay = false;
     }
   }
-
 }

@@ -7,7 +7,7 @@
 <dx-data-grid
     [dataSource]="fulfillments"
     [remoteOperations]="true"
-    [width]="'100%'"
+    [width]="'1380px'"
     [height]="600"
     [showBorders]="true"
    (onEditingStart)="onEditingStart($event)"
@@ -17,12 +17,15 @@
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
-    <dxo-editing mode="row"  [allowUpdating]="true" ></dxo-editing>
+    <dxo-editing mode="row" [allowUpdating]="true"></dxo-editing>
     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
-    <dxi-column dataField="fulfillmentId" caption="Fulfillment ID"></dxi-column>
+
+
+    <dxi-column dataField="fulfillmentId" caption="Fulfillment Id"></dxi-column>
     <dxi-column dataField="fulfillmentDate" caption="Fulfillment Date"></dxi-column>
+    <dxi-column dataField="submission.submissionId" caption="Submission Id"></dxi-column>
     <dxi-column dataField="submission.benchCandidate.candidateName" caption="Candidate Name"></dxi-column>
-    <dxi-column dataField="submission.requirement.requirementId" caption="Requirement ID"></dxi-column>
+    <dxi-column dataField="submission.requirement.requirementId" caption="Requirement Id"></dxi-column>
     <dxi-column dataField="submission.requirement.account.name" caption="Account Name"></dxi-column>
     <dxi-column dataField="fulfillmentStatus" caption="Fulfillment Status"></dxi-column>
     <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>

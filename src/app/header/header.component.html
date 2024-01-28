@@ -4,8 +4,14 @@
     <div class="head-content-left">
         <div class="search-container">
             <div>
-                <h3>Home > Dashboard > Requirements</h3>
-            </div>
+                <h3>
+                  <a routerLink="/dashboard">Dashboard</a>  
+                  <span *ngFor="let word of pathWords; let last = last">
+                    >
+                    <a *ngIf="word !== 'dashboard'" [routerLink]="'/' + word">{{ word }}</a>
+                  </span>
+                </h3>
+              </div>              
             
             <!-- <div class="normal-search">
                 <i class="fa fa-search search-icon"></i>

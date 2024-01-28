@@ -6,7 +6,7 @@
 <dx-data-grid
     [dataSource]="submissions"
     [remoteOperations]="true"
-    [width]="'100%'"
+    [width]="'1380px'"
     [height]="600"
     (onEditingStart)="onEditingStart($event)"
     [showBorders]="true">
@@ -22,6 +22,6 @@
     <dxi-column dataField="submissionStatus" caption="Submission Status"></dxi-column>
     <dxi-column dataField="requirement.requirementId" caption="Requirement ID"></dxi-column>
     <dxi-column dataField="requirement.account.name" caption="Account Name"></dxi-column>
-    <dxi-column dataField="benchCandidate.candidateName" caption="Bench Candidate Name"></dxi-column>
-   <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+    <dxi-column dataField="benchCandidate.candidateName" caption="Bench Candidate Name" [width]="220"></dxi-column>
+   <!-- <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail> -->
 </dx-data-grid>

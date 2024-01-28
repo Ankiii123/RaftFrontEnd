@@ -3,7 +3,7 @@
 <dx-data-grid
     [dataSource]="displayUsers"
     [remoteOperations]="true"
-    [width]="'100%'"
+    [width]="'1380px'"
     [height]="600"
     [showBorders]="true"
     
@@ -23,5 +23,5 @@
     <dxi-column dataField="role" caption="Role"></dxi-column>
     <dxi-column dataField="accounts" caption="Accounts"  [width]="'auto'" ></dxi-column>
     
-    <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+    <!-- <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail> -->
 </dx-data-grid>

@@ -7,7 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class DataService {
 
   public canAccessMainComponents: boolean = false;
-  public isUserDeafult: boolean = true;
+  public isUserDeafult: boolean = false;
+  public routee: string = '';
 
   constructor() { }
 

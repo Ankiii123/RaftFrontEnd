@@ -1,41 +1,43 @@
 <!-- add-requirement-dialog.component.html -->
 
-<h2 mat-dialog-title>Add Requirement</h2>
-<div mat-dialog-content [formGroup]="newUserForm">
-  <mat-form-field>
-    <mat-label>Employee ID</mat-label>
+<form [formGroup]="newUserForm" class="custom-form" (ngSubmit)="onSaveClick()">
+  <div class="form-field">
+    <label for="employeeId">Employee ID</label>
     <input matInput formControlName="employeeId" type="text" required>
-  </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <mat-label>Name</mat-label>
+  <div class="form-field">
+    <label for="name">Name</label>
     <input matInput formControlName="name" type="text" required>
-  </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <mat-label>Email ID</mat-label>
+  <div class="form-field">
+    <label for="emailId">Email ID</label>
     <input matInput formControlName="emailId" type="email" required>
-  </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <mat-label>Role</mat-label>
-    <mat-select formControlName="accountName">
-      <mat-option *ngFor="let role of data.roles" [value]="role" aria-required="true">
+  <div class="form-field">
+    <label for="accountName">Role</label>
+    <select formControlName="accountName">
+      <option *ngFor="let role of data.roles" [value]="role" aria-required="true">
         {{ role }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+      </option>
+    </select>
+  </div>
 
-  <mat-form-field>
-    <mat-label>Accounts</mat-label>
-    <mat-select formControlName="accountName">
-      <mat-option *ngFor="let accountName of data.accountNames" [value]="accountName">
+  <div class="form-field">
+    <label for="accountName">Accounts</label>
+    <select formControlName="accountName">
+      <option *ngFor="let accountName of data.accountNames" [value]="accountName">
         {{ accountName }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+      </option>
+    </select>
+  </div>
+
+<div class="dialog-actions">
+  <button type="button" class="cancel-button" (click)="onCancelClick()">Cancel</button>
+  <button type="submit" class="save-button">Save</button>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancelClick()">Cancel</button>
-  <button mat-button (click)="onSaveClick()">Save</button>
-</div>
+</form>
+
+

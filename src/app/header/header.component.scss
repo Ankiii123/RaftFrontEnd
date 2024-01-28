@@ -20,6 +20,10 @@
             .search-container{
                 position: relative;
 
+                a {
+                    text-transform: capitalize;
+                }
+
                 .normal-search{
                     display: flex;
                     flex-direction: row;
@@ -210,7 +214,36 @@
   
     &:hover {
       background-color: #0056b3;
+      color: white;
     }
   }
+
+  h3 {
+  margin-bottom: 10px;
+
+  a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #0a0097; // Change the color as needed
+    // font-weight: bold;
+  }
+
+  span {
+    display: inline-block;
+    margin-left: 5px; // Adjust the spacing between words
+    color: #333; // Change the color as needed
+
+    a {
+      text-decoration: none;
+      color: #0a0097; // Change the color as needed
+    //   font-weight: bold;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
   
   
