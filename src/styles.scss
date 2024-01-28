@@ -275,6 +275,26 @@ table tbody {
   }
 }
 
+// donut
 
+.legend-items {
+  padding: 20px;
+}
 
+/* Style for the total label */
+.total-label {
+  padding-top: 15px;
+}
 
+.item-label{
+  padding-top: 25px;
+}
+.total-label{
+  display: none; 
+}
+.total-value{
+  display: none;
+}
+.item-percent{
+  padding-top: 15px;
+}

@@ -14,6 +14,7 @@ import { RoleGuard } from './role.guard';
 import { Role } from './interfaces/Role';
 import { DefaultUserPageComponent } from './default-user-page/default-user-page.component';
 import { DonutChartComponent } from './donut-chart/donut-chart.component';
+import { SubmissionChartComponent } from './submission-chart/submission-chart.component';
 
 const routes: Routes = [
   {
@@ -54,7 +55,10 @@ const routes: Routes = [
   {
     path: 'defaultPage',
     component: DefaultUserPageComponent
-  }
+  },
+  {
+    path: 'chart-submission', component: SubmissionChartComponent,
+  },
 ];
 
 @NgModule({

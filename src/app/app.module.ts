@@ -39,6 +39,7 @@ import { AddRequirementDialogComponent } from './add-requirement-dialog-componen
 import { DonutChartComponent } from './donut-chart/donut-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DonutChartService } from './services/donut-chart.service';
+import { SubmissionChartComponent } from './submission-chart/submission-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { DonutChartService } from './services/donut-chart.service';
     UsersComponent,
     AddFulfillmentDialogComponent,
     DefaultUserPageComponent,
-    DonutChartComponent
+    DonutChartComponent,
+    SubmissionChartComponent
   ],
   imports: [
     BrowserModule,
