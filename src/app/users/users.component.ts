@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../services/account.service';
 import { AddUserDialogComponentComponent } from '../add-user-dialog-component/add-user-dialog-component.component';
 import { Role } from '../interfaces/Role';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-users',
@@ -17,7 +18,7 @@ export class UsersComponent {
   displayUsers: any[] = [];
   accounts : Account[] = [];
   
-  constructor(private userService : UserService, public dialog: MatDialog, private accountService: AccountService){}
+  constructor(private userService : UserService, public dialog: MatDialog, private accountService: AccountService, private snackBar: MatSnackBar){}
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -118,7 +119,10 @@ export class UsersComponent {
               this.fetchUsers();
             },
             (error) => {
-              console.error('Error inserting user:', error);
+              console.error('Error updating user:', error);
+          
+              const errorMessage = error.error ? error.error : 'An error occurred';
+              this.openSnackBar(errorMessage);
             }
           );
         } else {
@@ -127,4 +131,11 @@ export class UsersComponent {
       }
     });
   }
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+      panelClass: ['snackbar-success']
+    });
+  } 
 }

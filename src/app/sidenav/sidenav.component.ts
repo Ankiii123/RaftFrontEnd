@@ -2,6 +2,7 @@ import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/
 import { navbarData } from './nav-data';
 import { OutletContext } from '@angular/router';
 import { animate, keyframes, style, transition, trigger } from '@angular/animations';
+import { DataService } from '../services/data.service';
 
 interface SideNavToggle{
   screenWidth: number;
@@ -41,6 +42,8 @@ interface SideNavToggle{
   ]
 })
 export class SidenavComponent implements OnInit{
+
+  constructor(public _dataService: DataService){}
 
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed= false;

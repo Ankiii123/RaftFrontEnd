@@ -1,38 +1,44 @@
-<!-- add-bench-candidate-dialog.component.html -->
-
-<h2 mat-dialog-title>Bench Candidate</h2>
-<div mat-dialog-content [formGroup]="newBenchCandidateForm">
-  <!-- Add your form controls for bench candidate details here -->
-  <mat-form-field>
-    <mat-label>Candidate Name</mat-label>
-    <input matInput formControlName="candidateName" name="candidateName" required>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Status</mat-label>
-    <input matInput formControlName="candidateStatus" name="candidateStatus" required>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Skill Set</mat-label>
-    <input matInput formControlName="benchCandidateSkills" name="benchCandidateSkills" required>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Bench Period</mat-label>
-    <input matInput formControlName="benchPeriod" name="benchPeriod" type="number" required>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>BM Employee Name</mat-label>
-    <input matInput formControlName="benchManager" name="bench manager employee Id" name="benchManager" required>
-  </mat-form-field>
-  
-
-
-
+<h2 class="dialog-title">Add Bench Candidate</h2>
+<form [formGroup]="newBenchCandidateForm" class="custom-form" (ngSubmit)="onSaveClick()">
+<div class="form-field">
+  <label for="id">Candidate ID*</label>
+  <input id="id" type="number" formControlName="id" required>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancelClick()">Cancel</button>
-  <button mat-button (click)="onSaveClick()">Save</button>
+<div class="form-field">
+  <label for="candidateName">Candidate Name*</label>
+  <input id="candidateName" type="text" formControlName="candidateName" required>
 </div>
+  <div class="form-field">
+    <label for="candidateStatus">Status*</label>
+    <select id="candidateStatus" formControlName="candidateStatus">
+      <option *ngFor="let candidateStatus of data.candidateStatuses" [value]="candidateStatus">
+        {{ candidateStatus }}
+      </option>
+    </select>
+  </div>
+  <div class="form-field">
+    <label for="startDate">Start Date*</label>
+    <input id="startDate" type="date" formControlName="startDate" required>
+  </div>
+  <div class="form-field">
+    <label for="endDate">End Date*</label>
+    <input id="endDate" type="date" formControlName="endDate">
+  </div>
+  <div class="form-field">
+    <label for="benchCandidateSkills">Skills*</label>
+    <input id="benchCandidateSkills" type="text" formControlName="benchCandidateSkills" required>
+  </div>
+  <div class="form-field">
+    <label for="benchManagerName">Bench Manager Name*</label>
+    <select id="benchManagerName" formControlName="benchManagerName">
+      <option *ngFor="let benchManagerName of data.benchManagerNames" [value]="benchManagerName">
+        {{ benchManagerName }}
+      </option>
+    </select>
+  </div>
+  <div class="dialog-actions">
+    <button type="button" class="cancel-button" (click)="onCancelClick()">Cancel</button>
+    <button type="submit" class="save-button">Save</button>
+  </div>
+  </form>
+

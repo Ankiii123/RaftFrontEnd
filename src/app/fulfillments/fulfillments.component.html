@@ -1,8 +1,8 @@
 <!-- fulfillment.component.html -->
 
-<h2>Fulfillments</h2>
-<span>
-    <button mat-button (click)="openAddFulfillmentDialog()"  class="add-btn">Add Fulfillment</button>
+<span class="head-container">
+    <h2>Fulfillments</h2>
+    <button mat-button (click)="openAddFulfillmentDialog()" class="add-btn">Add Fulfillments</button>
 </span>
 <dx-data-grid
     [dataSource]="fulfillments"
@@ -17,7 +17,7 @@
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
-    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"></dxo-editing>
+    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"></dxo-editing>
     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
 
 

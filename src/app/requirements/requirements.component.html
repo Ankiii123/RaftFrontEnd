@@ -17,6 +17,7 @@
     <dxo-scrolling mode="virtual"></dxo-scrolling>
     <dxo-editing mode="row"  [allowUpdating]="true" ></dxo-editing>
     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+    
     <dxi-column dataField="requirementId" caption="Requirement ID" ></dxi-column>
     <dxi-column dataField="startDate" caption="Start Date"></dxi-column>
     <dxi-column dataField="endDate" caption="End Date"></dxi-column>
@@ -24,5 +25,5 @@
     <dxi-column dataField="jobDescription" caption="Job Description"  [width]="'auto'" ></dxi-column>
     <dxi-column dataField="hiringManager" caption="Hiring Manager"></dxi-column>
     <dxi-column dataField="account.name" caption="Account Name"></dxi-column>
-    <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+    <!-- <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail> -->
 </dx-data-grid>

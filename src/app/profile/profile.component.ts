@@ -4,6 +4,7 @@ import { Role } from '../interfaces/Role';
 import { accounts } from 'google-one-tap';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
+import { Account } from '../interfaces/Account';
 
 @Component({
   selector: 'app-profile',
@@ -13,24 +14,21 @@ import { AuthService } from '../services/auth.service';
 export class ProfileComponent implements OnInit{
   auth_token: string = '';
  
-  user: User = {
-    id: 0,
-    name:'',  
-    employeeId: 0,
-    emailId: '',
-    role: Role.DEFAULT,
-    accounts: []
-}
+  user: any;
+  accounts: Account[] = [];
 
   constructor(private authService: AuthService){
+    
   }
 
   ngOnInit(): void {
     this.auth_token != localStorage.getItem("auth_token");
-    // console.log(this.auth_token);
-    this.authService.fetchUserRole("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmtpdC5nYWRod2FsQGFjY29saXRlZGlnaXRhbC5jb20iLCJpYXQiOjE3MDYwOTQ1MzcsImV4cCI6MTcwNjE4MDkzN30._-yoMCRWuFrOOUqrhr8HkZ7zbyCMOWVK9RzKuxAlLuQ").subscribe((data) => {
+    console.log(this.auth_token);
+    this.authService.fetchUserRole(this.auth_token).subscribe((data) => {
       console.log("hehe")
       this.user = data;
+      this.accounts = data.accounts;
+      this.user.accounts = this.accounts.map((account) => account.name).join(", ");
     });
   }
 

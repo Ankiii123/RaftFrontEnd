@@ -20,7 +20,7 @@
   <mat-form-field>
     <mat-label>Role</mat-label>
     <mat-select formControlName="accountName">
-      <mat-option *ngFor="let role of data.roles" [value]="role">
+      <mat-option *ngFor="let role of data.roles" [value]="role" aria-required="true">
         {{ role }}
       </mat-option>
     </mat-select>

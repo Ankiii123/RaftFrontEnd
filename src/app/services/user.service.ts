@@ -23,7 +23,6 @@ export class UserService {
       .set('Authorization', `Bearer ${localStorage.getItem("auth_token")}`);
     return this.http.get(`${this.baseUrl}/${id}`, { headers: header });
   }
-
   updateUser(employeeId: number, user: any): Observable<any> {
     const header = new HttpHeaders()
       .set('Content-type', 'application/json')
@@ -38,3 +37,4 @@ export class UserService {
     return this.http.delete(`${this.baseUrl}/${id}/delete`, {headers: header});
   }
 }  
+

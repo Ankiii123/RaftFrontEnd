@@ -11,7 +11,7 @@ export interface Requirement {
     jobDescription: string;
     hiringManager: string;
     account: Account;
-
+    
   }
 
   
