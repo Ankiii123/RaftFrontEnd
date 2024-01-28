@@ -102,7 +102,7 @@ export class FulfillmentsComponent implements OnInit {
                )),
              fulfillmentStatus : Object.keys(FulfillmentStatus), 
              initialValues: {
-               fulfillmentId: event.data.fulfillmentId,
+               fulfillmentId: `${event.data.fulfillmentId}`, 
                fulfillmentDate: event.data.fulfillmentDate,
                fulfillmentStatus: event.data.fulfillmentStatus,
                submission : `${event.data.submission.submissionId}`

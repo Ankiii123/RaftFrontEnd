@@ -41,9 +41,22 @@ export class AddFulfillmentDialogComponent {
       const formValue = this.newFulfillmentForm.value;
       console.log(formValue);
       let fulfillmentDate = new Date(formValue.fulfillmentDate);
-      let formattedDate = fulfillmentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      
-      formValue.fulfillmentDate = formattedDate;
+      // let formattedDate = fulfillmentDate.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+      // console.log(formattedDate);      
+      // formValue.fulfillmentDate = formattedDate;
+//       let parts = fulfillmentDate.split('/');
+// let formattedDate = new Date(parts[2], parts[1] - 1, parts[0]).toLocaleDateString('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit' });
+
+let day = String(fulfillmentDate.getDate()).padStart(2, '0');
+let month = String(fulfillmentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+let year = fulfillmentDate.getFullYear();
+
+let formattedDate = `${day}-${month}-${year}`;
+
+console.log(formattedDate); 
+
+console.log(formattedDate);  
 
       this.dialogRef.close(formValue);
     } else {
