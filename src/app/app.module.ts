@@ -33,7 +33,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { UsersComponent } from './users/users.component';
 import { AddFulfillmentDialogComponent } from './add-fulfillment-dialog/add-fulfillment-dialog.component'
 import { AddUserDialogComponentComponent } from './add-user-dialog-component/add-user-dialog-component.component'
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {  MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -83,8 +84,8 @@ import { AddUserDialogComponentComponent } from './add-user-dialog-component/add
     MatOptionModule,
     MatInputModule,
     MatMenuModule,
-    
-    
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

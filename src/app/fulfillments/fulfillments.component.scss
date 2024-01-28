@@ -27,7 +27,7 @@ button {
   transition: background-color 0.3s ease-in-out;
 }
 
-hover {
+button:hover {
   background-color: darken(#0a0097, 70%); /* Darken the color on hover */
 }
 

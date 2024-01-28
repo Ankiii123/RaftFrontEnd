@@ -6,6 +6,7 @@ import { AddRequirementDialogComponent } from '../add-requirement-dialog-compone
 import { Dialog } from '@angular/cdk/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../services/account.service';
+import { ThemeService } from '../services/theme.service';
 @Component({
   selector: 'app-requirements',
   templateUrl: './requirements.component.html',
@@ -14,8 +15,11 @@ import { AccountService } from '../services/account.service';
 export class RequirementsComponent {
   requirements: Requirement[] = [];
   accounts : Account[] = [];
-  constructor(private requirementService : RequirementService ,public dialog: MatDialog,private accountService: AccountService,){}
+  constructor(private requirementService : RequirementService ,public dialog: MatDialog,private accountService: AccountService, private themeService: ThemeService){}
   ngOnInit(): void {
+    this.themeService.isDarkTheme$.subscribe((isDarkTheme) => {
+      document.body.classList.toggle('dark-theme', isDarkTheme);
+    });
     this.fetchRequirements();
   }
   private fetchRequirements(): void {

@@ -6,9 +6,13 @@
     <input matInput formControlName="fulfillmentId" type="number" required>
   </mat-form-field>
 
+
+
   <mat-form-field>
     <mat-label>Fulfillment Date</mat-label>
-    <input matInput formControlName="fulfillmentDate" type="date" required>
+    <input matInput [matDatepicker]="fulfillmentDatePicker"  formControlName="fulfillmentDate" readonly required>
+    <mat-datepicker-toggle matSuffix [for]="fulfillmentDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #fulfillmentDatePicker ></mat-datepicker>
   </mat-form-field>
 
     <mat-form-field>
