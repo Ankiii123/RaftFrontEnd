@@ -7,6 +7,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../services/account.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-requirements',
   templateUrl: './requirements.component.html',
@@ -16,9 +17,9 @@ export class RequirementsComponent {
   requirements: Requirement[] = [];
   accounts : Account[] = [];
   constructor(private requirementService : RequirementService ,public dialog: MatDialog,private accountService: AccountService, private snackBar: MatSnackBar){}
+
   ngOnInit(): void {
     this.fetchRequirements();
-    
   }
   private fetchRequirements(): void {
     this.requirementService.getAllRequirements().subscribe(

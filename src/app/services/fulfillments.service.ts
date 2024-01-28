@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable , BehaviorSubject} from 'rxjs';
 import { Fulfillment } from '../interfaces/Fulfillment';
 
 @Injectable({
@@ -9,6 +9,9 @@ import { Fulfillment } from '../interfaces/Fulfillment';
 export class FulfillmentsService {
   private baseUrl = 'http://localhost:8080/api/fulfillments';
   constructor(private http: HttpClient) {}
+
+
+ 
 
   // get all the fulfillments 
   getAllFulfillments(): Observable<Fulfillment[]> {

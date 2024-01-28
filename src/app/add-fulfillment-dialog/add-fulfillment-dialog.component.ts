@@ -12,6 +12,7 @@ export class AddFulfillmentDialogComponent {
 
   newFulfillmentForm: FormGroup;
 
+
   constructor(
     public dialogRef: MatDialogRef<AddFulfillmentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -28,6 +29,7 @@ export class AddFulfillmentDialogComponent {
     if (data.initialValues) {
       this.newFulfillmentForm.patchValue(data.initialValues);
     }
+   
   }
 
   onCancelClick(): void {
@@ -38,6 +40,11 @@ export class AddFulfillmentDialogComponent {
     if (this.newFulfillmentForm.valid) {
       const formValue = this.newFulfillmentForm.value;
       console.log(formValue);
+      let fulfillmentDate = new Date(formValue.fulfillmentDate);
+      let formattedDate = fulfillmentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      
+      formValue.fulfillmentDate = formattedDate;
+
       this.dialogRef.close(formValue);
     } else {
       console.error('Validation failed. Please fill in all required fields.');
