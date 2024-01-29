@@ -22,13 +22,25 @@ export class AddBenchCandidateDialogComponent {
       endDate:[null,Validators.required],
       benchCandidateSkills :[null,Validators.required],
       benchManagerName:[null, Validators.required],
-    });
+    },{ validators: this.dateValidator });
     if (data.initialValues) {
       this.newBenchCandidateForm.patchValue(data.initialValues);
     }
   }
   onCancelClick(): void {
     this.dialogRef.close();
+  }
+  dateValidator(group: FormGroup) {
+    const startDate = group.get('startDate')?.value;
+    const endDate = group.get('endDate')?.value;
+
+    if (endDate && startDate && new Date(endDate) <= new Date(startDate)) {
+      group.get('endDate')?.setErrors({ dateError: true });
+    } else {
+      group.get('endDate')?.setErrors(null);
+    }
+
+    return null;
   }
   onSaveClick(): void {
     if (this.newBenchCandidateForm.valid) {

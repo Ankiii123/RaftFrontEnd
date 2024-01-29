@@ -9,6 +9,7 @@
     [width]="'1380px'"
     [height]="600"
     [showBorders]="true"
+    (onRowPrepared)="onRowPrepared($event)"
     (onEditingStart)="onEditingStart($event)"
 >
     <dxo-filter-row [visible]="true"></dxo-filter-row >
