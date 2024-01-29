@@ -6,6 +6,7 @@
     <input id="requirementId" type="number" formControlName="requirementId" required>
   </div>
 
+  
   <div class="form-field">
     <label for="startDate">Start Date*</label>
     <input id="startDate" type="date" formControlName="startDate" required>
@@ -14,6 +15,9 @@
   <div class="form-field">
     <label for="endDate">End Date*</label>
     <input id="endDate" type="date" formControlName="endDate" required>
+    <div *ngIf="newRequirementForm.hasError('dateError', 'endDate')">
+      End date must be greater than start date.
+    </div>
   </div>
 
   <div class="form-field">

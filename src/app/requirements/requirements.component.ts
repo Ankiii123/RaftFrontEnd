@@ -137,4 +137,22 @@ export class RequirementsComponent {
       panelClass: ['snackbar-success']
     });
   } 
+
+  onRowPrepared(e: any) {
+    const fulfillmentNo = e.data.fulfilledNo;
+    const requiredNo = e.data.requiredNo;
+      const startDate = new Date(e.data.startDate);
+      const endDate = new Date(e.data.endDate);
+      const currentDate = new Date();
+  
+      const timePassedPercentage = (endDate.getTime() - currentDate.getTime()) / (endDate.getTime() - startDate.getTime() + 1);
+      if (fulfillmentNo === requiredNo) {
+        e.rowElement.style.backgroundColor = '#baffc9';
+      } else if (timePassedPercentage <= 1 / 3) {
+        e.rowElement.style.backgroundColor = 	'#ffb3ba';
+      } 
+    else {
+      e.rowElement.style.backgroundColor = '#ffffba';
+    }
+  }
 } 
