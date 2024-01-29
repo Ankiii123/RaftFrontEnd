@@ -122,20 +122,21 @@ export class UsersComponent {
               console.error('Error updating user:', error);
           
               const errorMessage = error.error ? error.error : 'An error occurred';
-              this.openSnackBar(errorMessage);
+              this.openSnackBar(errorMessage, false);
             }
           );
         } else {
           console.error('Selected account not found');
+          this.openSnackBar('Selected account not found', false);
         }
       }
     });
   }
 
-  openSnackBar(message: string): void {
+  openSnackBar(message: string, success: boolean): void {
     this.snackBar.open(message, 'Close', {
       duration: 5000,
-      panelClass: ['snackbar-success']
+      panelClass: [success ? 'snackbar-success' : 'snackbar-error', 'mat-snack-bar-container-light']
     });
   } 
 }

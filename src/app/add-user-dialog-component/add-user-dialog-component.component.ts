@@ -25,6 +25,7 @@ export class AddUserDialogComponentComponent {
 
     // Set initial values if provided
     if (data.initialValues) {
+      console.log(data.initialValues);
       this.newUserForm.patchValue(data.initialValues);
     }
   }

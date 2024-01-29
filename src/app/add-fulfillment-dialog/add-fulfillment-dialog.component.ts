@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-fulfillment-dialog',
@@ -16,7 +17,8 @@ export class AddFulfillmentDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AddFulfillmentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder, // Inject the form builder
+    private snackBar: MatSnackBar
   ) {
     this.newFulfillmentForm = this.formBuilder.group({
       fulfillmentId: [null, Validators.required],
@@ -60,7 +62,15 @@ console.log(formattedDate);
 
       this.dialogRef.close(formValue);
     } else {
+      this.openSnackBar(`Validation failed. Please fill in all required fields`, false);
       console.error('Validation failed. Please fill in all required fields.');
     }
   }
+
+  openSnackBar(message: string, success: boolean): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+      panelClass: [success ? 'snackbar-success-light' : 'snackbar-error-light']
+    });
+  } 
 }

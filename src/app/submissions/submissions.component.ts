@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BenchService } from '../services/bench-candidate.service';
 import { AddSubmissionDialogComponent } from '../add-submission-dialog/add-submission-dialog.component';
 import { SubmissionStatus } from '../interfaces/SubmissionStatus';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-submissions',
@@ -19,7 +20,7 @@ export class SubmissionsComponent {
   benchCandidates: BenchCandidate[] = [];
   requirements:Requirement[]=[];
   selectedSubmission!:Submission;
-  constructor(private submissionService: SubmissionService,private requirementService : RequirementService,private benchCandidateService: BenchService,public dialog: MatDialog){};
+  constructor(private submissionService: SubmissionService,private requirementService : RequirementService,private benchCandidateService: BenchService,public dialog: MatDialog, private snackBar: MatSnackBar){};
   
   ngOnInit(){
     this.fetchSubmission();
@@ -69,6 +70,7 @@ export class SubmissionsComponent {
           console.log("Result",result);
         } else {
           console.error('Selected bench candidate not found');
+          this.openSnackBar(`Selected bench candidate not found`, false);
         }
 if(selectedRequirement){
   result.requirement=selectedRequirement;
@@ -85,6 +87,7 @@ else{
             },
             (error) => {
               console.error('Error inserting submission:', error);
+              this.openSnackBar(`Error inserting submission + ${error}`, false);
             }
           );
       }
@@ -118,6 +121,7 @@ else{
                       console.log("Result",result);
                     } else {
                       console.error('Selected bench candidate not found');
+                      this.openSnackBar(`Selected bench candidate not found`, false);
                     }
 
             if(selectedRequirement){
@@ -127,6 +131,7 @@ else{
             }
             else{
               console.error("Selected requirement not found");
+              this.openSnackBar(`Selected requirement not found`, false);
             }
 
             this.submissionService.updateSubmission(result.submissionId,result).subscribe(
@@ -136,12 +141,19 @@ else{
               },
               (error) => {
                 console.error('Error updating submission:', error);
+                this.openSnackBar(`Error updating submission: + ${error}`, false);
               }
             );
-         
         }
       });
     }
+
+    openSnackBar(message: string, success: boolean): void {
+      this.snackBar.open(message, 'Close', {
+        duration: 5000,
+        panelClass: [success ? 'snackbar-success' : 'snackbar-error', 'mat-snack-bar-container-light']
+      });
+    } 
 }
 
 

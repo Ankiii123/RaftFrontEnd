@@ -9,6 +9,7 @@ import { BenchService } from '../services/bench-candidate.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFulfillmentDialogComponent } from '../add-fulfillment-dialog/add-fulfillment-dialog.component';
 import { FulfillmentStatus } from '../interfaces/FulfillmentStatus';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-fulfillment',
@@ -21,7 +22,7 @@ export class FulfillmentsComponent implements OnInit {
   // pageSize: number = 2;
   // currentPageIndex: number = 1;
   // allowedPageSizes: number[] = [2, 4, 6];
-  constructor(private fulfillmentService : FulfillmentsService, private submissionService : SubmissionService, private benchService : BenchService, public dialog: MatDialog){}
+  constructor(private fulfillmentService : FulfillmentsService, private submissionService : SubmissionService, private benchService : BenchService, public dialog: MatDialog, private snackBar: MatSnackBar){}
   ngOnInit(): void {
     this.fetchFulfillments();
   }
@@ -78,13 +79,16 @@ export class FulfillmentsComponent implements OnInit {
           this.fulfillmentService.createFulfillment(result).subscribe(
             (createdFulfillment) => {
               console.log('Fulfillment inserted successfully:', createdFulfillment);
+              this.openSnackBar(`Fulfillment inserted successfully`, true);
               this.fetchFulfillments();
             },
             (error) => {
+              this.openSnackBar(`Error inserting fulfillment + ${error}`, false);
               console.error('Error inserting fulfillment:', error);
             }
           );
         } else {
+          this.openSnackBar(`Selected submission not found`, false);
           console.error('Selected submission not found');
         }
       }
@@ -125,16 +129,26 @@ export class FulfillmentsComponent implements OnInit {
               this.fulfillmentService.updateFulfillment(result.fulfillmentId,result).subscribe(
                 (updatedFulfillment) => {
                   console.log('Fulfillment inserted successfully:', updatedFulfillment);
+                  this.openSnackBar(`Fulfillment inserted successfully`, true);
                   this.fetchFulfillments();
                 },
                 (error) => {
+                  this.openSnackBar(`Error inserting fulfillment: + ${error}`, false);
                   console.error('Error inserting fulfillment:', error);
                 }
               );
             } else {
+              this.openSnackBar(`Selected submission not found`, false);
               console.error('Selected submission not found');
             }
           }
         });
   } 
+
+  openSnackBar(message: string, success: boolean): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+      panelClass: [success ? 'snackbar-success-light' : 'snackbar-error-light']
+    });
+  }  
 }

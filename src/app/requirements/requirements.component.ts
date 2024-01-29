@@ -3,7 +3,6 @@ import { Requirement } from '../interfaces/Requirement';
 import { RequirementService } from '../services/requirement.service';
 import { Account } from '../interfaces/Account';
 import { AddRequirementDialogComponent } from '../add-requirement-dialog-component/add-requirement-dialog-component.component';
-import { Dialog } from '@angular/cdk/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from '../services/account.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -63,14 +62,17 @@ export class RequirementsComponent {
           
           this.requirementService.createRequirement(result).subscribe(
             (createdRequirement) => {
+              this.openSnackBar(`Requirement inserted successfully`, true);
               console.log('Requirement inserted successfully:', createdRequirement);
               this.fetchRequirements();
             },
             (error) => {
+              this.openSnackBar(`Error inserting requirement: + ${error}`, false);
               console.error('Error inserting requirement:', error);
             }
           );
         } else {
+          this.openSnackBar(`Selected account not found`, false);
           console.error('Selected account not found');
         }
       }
@@ -105,9 +107,11 @@ export class RequirementsComponent {
           this.requirementService.updateRequirement(result.requirementId,result).subscribe(
             (updatedRequirement) => {
               console.log('Requirement updated successfully:', updatedRequirement);
+              this.openSnackBar(`Requirement updated successfully`, true);
               this.fetchRequirements();
             },
             (error) => {
+              this.openSnackBar(`Error inserting requirement: + ${error}`, false);
               console.error('Error inserting requirement:', error);
             }
           );
@@ -126,15 +130,16 @@ export class RequirementsComponent {
           this.fetchRequirements();
         },
         (error) => {
+          this.openSnackBar(`Error removing requirement: + ${error}`, false);
           console.error('Error removing requirement:', error);
         }
       );
   }
 
-  openSnackBar(message: string): void {
+  openSnackBar(message: string, success: boolean): void {
     this.snackBar.open(message, 'Close', {
       duration: 5000,
-      panelClass: ['snackbar-success']
+      panelClass: [success ? 'snackbar-success-light' : 'snackbar-error-light']
     });
-  } 
+  }  
 } 
