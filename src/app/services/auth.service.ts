@@ -1,6 +1,10 @@
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase/app';
+import {AngularFireAuth} from "@angular/fire/compat/auth"
+import {GoogleAuthProvider} from "@angular/fire/auth";
+import 'firebase/auth'
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +13,18 @@ export class AuthService {
 
   private path = 'http://localhost:8080/';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private fireauth: AngularFireAuth) { }
+
+  public signInWithGoogle() {
+    let provider = new GoogleAuthProvider();
+    provider.addScope('email');
+
+    this.fireauth.signInWithPopup(provider).then(result => {
+        console.log(result.user?.email);
+      }).catch(error => {
+        console.error(error);
+      });
+  }
 
   public signOutExternal = () => {
     localStorage.removeItem("auth_token");

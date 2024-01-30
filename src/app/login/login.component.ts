@@ -17,25 +17,31 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
 
-    // @ts-ignore
-    window.onGoogleLibraryLoad = () => {
-      // @ts-ignore
-      google.accounts.id.initialize({
-        client_id: '888908128889-t24335rv56vhplh02rubq4u514ui641e.apps.googleusercontent.com',
-        callback: this.handleCredentialResponse.bind(this),
-        auto_select: false,
-        cancel_on_tap_outside: true
-      });
-      // @ts-ignore
-      google.accounts.id.renderButton(
-        // @ts-ignore
-        document.getElementById('buttonDiv'),
-        { theme: 'outline', size: 'large', width: '100%' }
-      );
-      // @ts-ignore
-      google.accounts.id.prompt((notification: PromptMomentNotification) => {});
-    }
+    // // @ts-ignore
+    // window.onGoogleLibraryLoad = () => {
+    //   // @ts-ignore
+    //   google.accounts.id.initialize({
+    //     client_id: '888908128889-t24335rv56vhplh02rubq4u514ui641e.apps.googleusercontent.com',
+    //     callback: this.handleCredentialResponse.bind(this),
+    //     auto_select: false,
+    //     cancel_on_tap_outside: true
+    //   });
+    //   // @ts-ignore
+    //   google.accounts.id.renderButton(
+    //     // @ts-ignore
+    //     document.getElementById('buttonDiv'),
+    //     { theme: 'outline', size: 'large', width: '100%' }
+    //   );
+    //   // @ts-ignore
+    //   google.accounts.id.prompt((notification: PromptMomentNotification) => {});
+    // }
+    // this.renderGoogleSignInButton();
   }
+
+  signInWithGoogle(): void {
+    this.authService.signInWithGoogle();
+  }
+
   async handleCredentialResponse(response: CredentialResponse) {
     try {
       await firstValueFrom(this.service.createUser(response.credential)).then(
