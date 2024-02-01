@@ -40,6 +40,9 @@ import { DonutChartComponent } from './donut-chart/donut-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DonutChartService } from './services/donut-chart.service';
 import { SubmissionChartComponent } from './submission-chart/submission-chart.component';
+import { environment } from '../environments/environment';
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +103,9 @@ import { SubmissionChartComponent } from './submission-chart/submission-chart.co
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    NgxChartsModule
+    NgxChartsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
  ],
   providers: [DonutChartService],
   bootstrap: [AppComponent]

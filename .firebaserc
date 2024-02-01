@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "raft-29951"
+  },
+  "targets": {
+    "raft-29951": {
+      "hosting": {
+        "raft": [
+          "raft-29951"
+        ]
+      }
+    }
+  }
+}

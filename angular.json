@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "RaftFrontEndAngular": {
+    "raft": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/raft-front-end-angular",
+            "outputPath": "dist",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "RaftFrontEndAngular:build:production"
+              "buildTarget": "raft:build:production"
             },
             "development": {
-              "buildTarget": "RaftFrontEndAngular:build:development"
+              "buildTarget": "raft:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "RaftFrontEndAngular:build"
+            "buildTarget": "raft:build"
           }
         },
         "test": {
@@ -104,6 +104,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "raft:build:production",
+              "serveTarget": "raft:serve:production"
+            },
+            "development": {
+              "buildTarget": "raft:build:development",
+              "serveTarget": "raft:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

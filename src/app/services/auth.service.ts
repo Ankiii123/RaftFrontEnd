@@ -1,27 +1,32 @@
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GoogleAuthProvider } from 'firebase/auth'
+import { FirebasePayload } from '../interfaces/FirebasePayload';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  firebasePayload!: FirebasePayload;
   private path = 'http://localhost:8080/';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private angularAuth: AngularFireAuth, private httpClient: HttpClient) { }
 
   public signOutExternal = () => {
     localStorage.removeItem("auth_token");
     console.log("Auth Token deleted");
   }
 
-  public createUser(credentials: string): Observable<any> {
-    const header = new HttpHeaders().set('Content-type', 'text/plain;charset=UTF-8');
+  public createUser(firebasePayload: FirebasePayload): Observable<any> {
+    console.log("In service" + firebasePayload.name, firebasePayload.emailId);
+    const header = new HttpHeaders().set('Content-type', 'application/json');
+
     return this.httpClient.post(
-      this.path + "api/auth/createUser", 
-      credentials, 
-      {headers: header}
+    this.path + `api/auth/signInWithGoogle`, 
+    firebasePayload,
+    {headers: header}
     );
   }
 
